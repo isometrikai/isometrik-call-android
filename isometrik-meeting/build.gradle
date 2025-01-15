@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'maven-publish'
+
 
 android {
   compileSdk 34
@@ -87,4 +89,17 @@ dependencies {
   //For notifications
   implementation platform('com.google.firebase:firebase-bom:31.0.0')
   implementation 'com.google.firebase:firebase-messaging'
+}
+
+afterEvaluate {
+  publishing {
+    publications {
+      release(MavenPublication) {
+        from components.release
+        groupId = 'io.isometrik.call'
+        artifactId = 'android'
+        version = '1.0.0'
+      }
+    }
+  }
 }
