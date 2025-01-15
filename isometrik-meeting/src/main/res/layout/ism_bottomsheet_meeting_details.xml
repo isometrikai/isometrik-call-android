@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/ism_white"
+    >
+
+  <View
+      android:id="@+id/vPeek"
+      android:layout_margin="@dimen/ism_dp_20"
+      android:layout_width="@dimen/ism_dp_80"
+      android:layout_height="@dimen/ism_dp_4"
+      android:layout_centerHorizontal="true"
+      android:background="@drawable/ism_peek_rectangle"
+      />
+
+  <RelativeLayout
+      android:id="@+id/rlControlPanel"
+      android:layout_width="match_parent"
+      android:layout_height="120dp"
+      android:layout_below="@+id/vPeek"
+      >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ism_dp_1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/ism_line_gray"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMuteVideo"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="@dimen/ism_dp_11"
+        android:elevation="3dp"
+        app:srcCompat="@drawable/ism_ic_video"
+        android:background="@drawable/ism_action_button_circle"
+        android:layout_toStartOf="@id/ivMuteAudio"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/ism_dp_16"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMuteAudio"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="@dimen/ism_dp_11"
+        android:elevation="3dp"
+        android:background="@drawable/ism_action_button_circle"
+        app:srcCompat="@drawable/ism_ic_mic"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/ism_dp_16"
+        android:layout_toStartOf="@+id/ivEndMeeting"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivEndMeeting"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="@dimen/ism_dp_11"
+        android:elevation="3dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/ism_end_call_circle"
+        app:srcCompat="@drawable/ism_ic_call"
+        android:layout_margin="@dimen/ism_dp_16"
+        android:rotation="140"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivSpeaker"
+        android:background="@drawable/ism_action_button_circle"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="@dimen/ism_dp_11"
+        android:elevation="3dp"
+        app:srcCompat="@drawable/ism_ic_speaker"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/ivEndMeeting"
+        android:layout_margin="@dimen/ism_dp_16"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivSwitchCamera"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="@dimen/ism_dp_11"
+        android:elevation="3dp"
+        android:layout_toEndOf="@+id/ivSpeaker"
+        android:background="@drawable/ism_action_button_circle"
+        app:srcCompat="@drawable/ism_ic_camera_switch"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/ism_dp_16"
+        />
+
+  </RelativeLayout>
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvParticipantsCount"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/rlControlPanel"
+      android:text="@string/ism_participants_count"
+      android:maxLines="1"
+      android:ellipsize="end"
+      android:layout_marginTop="@dimen/ism_dp_13"
+      android:layout_marginBottom="@dimen/ism_dp_5"
+      android:layout_marginStart="@dimen/ism_dp_8"
+      android:textStyle="bold"
+      android:textColor="@color/ism_participants_count_grey"
+      />
+
+
+  <RelativeLayout
+      android:id="@+id/rlAddParticipants"
+      android:layout_width="match_parent"
+      android:layout_height="48dp"
+      android:layout_below="@+id/tvParticipantsCount"
+      >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivAddParticipant"
+        android:layout_width="@dimen/ism_dp_34"
+        app:srcCompat="@drawable/ism_ic_add_participant"
+        android:layout_marginEnd="@dimen/ism_dp_13"
+        android:layout_marginStart="@dimen/ism_dp_8"
+        android:layout_height="@dimen/ism_dp_34"
+        android:background="@drawable/ism_add_image_background_circle"
+        android:padding="@dimen/ism_dp_10"
+        android:layout_centerVertical="true"
+        />
+
+    <TextView
+        android:id="@+id/tvAddParticipants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/ism_dp_16"
+        android:paddingStart="@dimen/ism_dp_5"
+        android:paddingEnd="@dimen/ism_dp_0"
+        android:layout_toEndOf="@+id/ivAddParticipant"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="@string/ism_add_participants"
+        android:textColor="@color/ism_black"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        />
+
+  </RelativeLayout>
+
+
+  <RelativeLayout
+      android:id="@+id/rlSearch"
+      android:layout_below="@+id/rlAddParticipants"
+      android:layout_width="wrap_content"
+      android:background="@drawable/ism_search_background"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/ism_dp_8"
+      android:layout_marginBottom="@dimen/ism_dp_8"
+      android:layout_marginStart="@dimen/ism_dp_16"
+      android:layout_marginEnd="@dimen/ism_dp_16"
+      android:elevation="@dimen/ism_dp_1"
+      >
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ism_search_members_hint"
+        android:maxLength="100"
+        android:maxLines="3"
+        android:paddingBottom="@dimen/ism_dp_10"
+        android:paddingStart="@dimen/ism_dp_16"
+        android:paddingEnd="@dimen/ism_dp_16"
+        android:paddingTop="@dimen/ism_dp_10"
+        android:textColor="@color/ism_hint_grey"
+        android:textColorHint="@color/ism_hint_grey"
+        android:textSize="@dimen/ism_sp_14"
+        android:background="@drawable/ism_search_background"
+        />
+
+  </RelativeLayout>
+
+
+  <View
+      android:id="@+id/vSeperator"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/ism_dp_1"
+      android:background="@color/ism_line_gray"
+      android:layout_marginTop="@dimen/ism_dp_5"
+      android:layout_below="@+id/rlSearch"
+      />
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/refresh"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/vSeperator"
+      >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMembers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarStyle="outsideInset" />
+
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+  <com.facebook.shimmer.ShimmerFrameLayout
+      android:id="@+id/shimmerFrameLayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/vSeperator"
+      android:visibility="gone"
+      >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <include layout="@layout/ism_meeting_member_item_shimmer" />
+      <include layout="@layout/ism_meeting_member_item_shimmer" />
+      <include layout="@layout/ism_meeting_member_item_shimmer" />
+      <include layout="@layout/ism_meeting_member_item_shimmer" />
+      <include layout="@layout/ism_meeting_member_item_shimmer" />
+      <include layout="@layout/ism_meeting_member_item_shimmer" />
+
+    </LinearLayout>
+  </com.facebook.shimmer.ShimmerFrameLayout>
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvNoMembers"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:drawablePadding="@dimen/ism_dp_8"
+      app:drawableTopCompat="@drawable/ism_ic_no_users"
+      android:gravity="center"
+      android:text="@string/ism_no_participants_to_add"
+      android:textColor="@color/ism_black"
+      android:layout_below="@+id/rlSearch"
+      android:visibility="gone"
+      />
+
+</RelativeLayout>

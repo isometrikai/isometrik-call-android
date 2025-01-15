@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ism_dp_70"
+    android:background="@color/ism_white"
+    >
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvMeetingTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/ism_shimmer_grey"
+      android:layout_marginTop="@dimen/ism_dp_13"
+      android:layout_marginStart="@dimen/ism_dp_16"
+      android:layout_marginEnd="@dimen/ism_dp_8"
+      android:layout_toStartOf="@+id/tvJoinMeeting"
+      />
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvJoinMeeting"
+      android:layout_width="56dp"
+      android:layout_height="32dp"
+      android:layout_marginEnd="@dimen/ism_dp_16"
+      android:layout_alignParentEnd="true"
+      android:background="@color/ism_shimmer_grey"
+      android:layout_marginTop="@dimen/ism_dp_13"
+      />
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvMeetingDetails"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/tvMeetingTitle"
+      android:layout_marginEnd="@dimen/ism_dp_8"
+      android:layout_marginTop="@dimen/ism_dp_5"
+      android:layout_marginStart="@dimen/ism_dp_16"
+      android:background="@color/ism_shimmer_grey"
+      android:layout_toStartOf="@id/tvJoinMeeting"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/ism_dp_1"
+      android:layout_alignStart="@+id/tvMeetingTitle"
+      android:layout_alignParentBottom="true"
+      android:background="@color/ism_line_gray"
+      />
+
+</RelativeLayout>

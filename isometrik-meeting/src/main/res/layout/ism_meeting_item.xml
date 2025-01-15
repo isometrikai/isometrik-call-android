@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ism_dp_70"
+    android:background="@color/ism_white"
+    >
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvMeetingTitle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:maxLines="1"
+      android:ellipsize="end"
+      android:textColor="@color/ism_black"
+      android:textStyle="bold"
+      android:layout_marginTop="@dimen/ism_dp_13"
+      android:layout_marginStart="@dimen/ism_dp_16"
+      android:layout_marginEnd="@dimen/ism_dp_8"
+      android:layout_toStartOf="@+id/tvJoinMeeting"
+      android:textSize="@dimen/ism_sp_16"
+      android:text="@string/ism_meeting_title_hint"
+      />
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvJoinMeeting"
+      android:layout_width="56dp"
+      android:layout_height="32dp"
+      android:textColor="@color/ism_white"
+      android:layout_marginEnd="@dimen/ism_dp_16"
+      android:layout_alignParentEnd="true"
+      android:gravity="center"
+      android:background="@drawable/ism_join_meeting_background"
+      android:text="@string/ism_join"
+      android:maxLines="1"
+      android:layout_marginTop="@dimen/ism_dp_13"
+      android:ellipsize="end"
+      />
+
+  <androidx.appcompat.widget.AppCompatTextView
+      android:id="@+id/tvMeetingDetails"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:maxLines="1"
+      android:ellipsize="end"
+      android:textColor="@color/ism_meeting_details_grey"
+      android:layout_below="@+id/tvMeetingTitle"
+      android:layout_marginEnd="@dimen/ism_dp_8"
+      android:layout_marginTop="@dimen/ism_dp_5"
+      android:layout_marginStart="@dimen/ism_dp_16"
+      android:text="@string/ism_meeting_details"
+      android:layout_toStartOf="@id/tvJoinMeeting"
+      />
+
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/ism_dp_1"
+      android:layout_alignStart="@+id/tvMeetingTitle"
+      android:layout_alignParentBottom="true"
+      android:background="@color/ism_line_gray"
+      />
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- The launcher theme. It sets the main window background to the launch_screen drawable -->
+  <style name="Theme.AppCompat.Light.NoActionBar.Launcher">
+    <item name="android:windowBackground">@drawable/ism_splash_screen</item>
+
+  </style>
+
+    <declare-styleable name="TouchImageView">
+    <attr name="zoom_enabled" format="boolean" />
+  </declare-styleable>
+
+
+  <style name="MeetingScreenStyle" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowIsTranslucent">false</item>
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:backgroundDimEnabled">false</item>
+<!--    <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>-->
+  </style>
+
+  <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+    <item name="android:windowIsFloating">false</item>
+    <item name="android:statusBarColor">@android:color/transparent</item>
+    <item name="android:windowSoftInputMode">adjustResize</item>
+  </style>
+</resources>
+

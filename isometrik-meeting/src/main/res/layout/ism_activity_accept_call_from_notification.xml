@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rlParent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMeetingImage"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/ism_dp_80"
+            android:layout_marginTop="45dp"
+            app:srcCompat="@drawable/ism_ic_profile"
+            android:layout_height="@dimen/ism_dp_80"/>
+
+        <TextView
+            android:id="@+id/tvMeetingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivMeetingImage"
+            android:textSize="@dimen/ism_sp_16"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_margin="@dimen/ism_dp_13"
+            />
+
+        <TextView
+            android:id="@+id/tvMeetingDurationOrConnectionStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMeetingTitle"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            />
+
+</RelativeLayout>

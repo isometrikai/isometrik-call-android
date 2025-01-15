@@ -1,0 +1,37 @@
+<resources>
+    <dimen name="ism_dp__10">-22.5dp</dimen>
+  <dimen name="ism_dp__4">-9.0dp</dimen>
+  <dimen name="ism_dp_0">0dp</dimen>
+  <dimen name="ism_dp_0_5">1.125dp</dimen>
+  <dimen name="ism_dp_1">2.25dp</dimen>
+  <dimen name="ism_dp_2">4.5dp</dimen>
+    <dimen name="ism_dp_4">9.0dp</dimen>
+  <dimen name="ism_dp_5">11.25dp</dimen>
+  <dimen name="ism_dp_6">13.5dp</dimen>
+  <dimen name="ism_dp_8">18.0dp</dimen>
+    <dimen name="ism_dp_10">22.5dp</dimen>
+  <dimen name="ism_dp_11">24.75dp</dimen>
+  <dimen name="ism_dp_12">27.0dp</dimen>
+  <dimen name="ism_dp_13">29.25dp</dimen>
+  <dimen name="ism_dp_14">31.5dp</dimen>
+    <dimen name="ism_dp_16">36.0dp</dimen>
+    <dimen name="ism_dp_18">40.5dp</dimen>
+    <dimen name="ism_dp_20">45.0dp</dimen>
+  <dimen name="ism_dp_22">49.5dp</dimen>
+  <dimen name="ism_dp_24">54.0dp</dimen>
+    <dimen name="ism_dp_26">58.5dp</dimen>
+  <dimen name="ism_dp_28">63.0dp</dimen>
+  <dimen name="ism_dp_30">67.5dp</dimen>
+  <dimen name="ism_dp_34">76.5dp</dimen>
+  <dimen name="ism_dp_36">81.0dp</dimen>
+    <dimen name="ism_dp_60">135.0dp</dimen>
+  <dimen name="ism_dp_64">144.0dp</dimen>
+  <dimen name="ism_dp_70">157.5dp</dimen>
+    <dimen name="ism_dp_80">180.0dp</dimen>
+
+    <dimen name="ism_sp_12">12sp</dimen>
+  <dimen name="ism_sp_14">14sp</dimen>
+  <dimen name="ism_sp_16">16sp</dimen>
+    <dimen name="ism_sp_18">18sp</dimen>
+  <dimen name="ism_sp_20">20sp</dimen>
+</resources>

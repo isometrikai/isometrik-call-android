@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rlParent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    android:background="@color/ism_white"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivAppLogo"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/ism_dp_80"
+            android:layout_marginTop="45dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_height="@dimen/ism_dp_80"/>
+
+        <TextView
+            android:id="@+id/tvMeetingType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivAppLogo"
+            android:textSize="@dimen/ism_sp_16"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/ism_dp_5"
+            android:text="@string/ism_call_type_video"
+            />
+
+        <TextView
+            android:id="@+id/tvMeetingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMeetingType"
+            android:textSize="@dimen/ism_sp_16"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/ism_dp_13"
+            android:layout_marginStart="@dimen/ism_dp_13"
+            android:layout_marginEnd="@dimen/ism_dp_13"
+            android:text="@string/ism_user_name_holder"
+            />
+
+        <TextView
+            android:id="@+id/tvMeetingDurationOrConnectionStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMeetingTitle"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/ism_dp_5"
+            android:layout_marginStart="@dimen/ism_dp_13"
+            android:layout_marginEnd="@dimen/ism_dp_13"
+            android:layout_marginBottom="@dimen/ism_dp_20"
+            android:text="@string/ism_ringing"
+            />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMeetingImage"
+        android:layout_centerInParent="true"
+        android:layout_width="200dp"
+        app:srcCompat="@drawable/ism_ic_profile"
+        android:layout_height="200dp"/>
+
+        <RelativeLayout
+            android:id="@+id/rlControlPanel"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ism_control_plane_background_grey"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAccept"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ism_accept_call_circle"
+                app:srcCompat="@drawable/ism_ic_call"
+                android:layout_marginStart="@dimen/ism_dp_60"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivReject"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ism_end_call_circle"
+                app:srcCompat="@drawable/ism_ic_call"
+                android:layout_marginEnd="@dimen/ism_dp_60"
+                android:rotation="140"
+                />
+
+        </RelativeLayout>
+
+</RelativeLayout>

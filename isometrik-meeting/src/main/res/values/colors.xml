@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!--  Users Activity-->
+    <color name="ism_divider">#EFEFEF</color>
+    <color name="ism_white">#ffffff</color>
+    <color name="ism_black">#000000</color>
+    <color name="ism_title_black">#484848</color>
+    <color name="ism_blue">#007AFF</color>
+    <color name="ism_text_black">#222222</color>
+
+    <!--  User's item-->
+    <color name="ism_select_text_blue">#00B3FF</color>
+    <color name="ism_identifier_text_grey">#999999</color>
+    <color name="ism_line_gray">#22000000</color>
+    <color name="ism_shimmer_grey">#E0E0E0</color>
+
+
+    <color name="ism_end_blue">#56C2FA</color>
+    <color name="ism_start_blue">#0389DB</color>
+    <color name="ism_send_message_grey">#EEEEEE</color>
+    <color name="ism_hint_grey">#666666</color>
+    <color name="ism_contact_background">#5D76FF</color>
+    <color name="ism_seperator_grey">#9E9E9E</color>
+    <color name="ism_select_member_grey">#757575</color>
+
+
+    <!--  Meeting item-->
+    <color name="ism_meeting_details_grey">#757575</color>
+    <color name="ism_join_end_green">#81C784</color>
+    <color name="ism_join_start_green">#4CAF50</color>
+    <color name="ism_typing_blue">#1976D2</color>
+
+<!--    Meeting activity-->
+    <color name="ism_action_button_grey">#77000000</color>
+    <color name="ism_control_plane_background_grey">#22000000</color>
+
+    <!--  Notification-->
+    <color name="ism_notification_icon">#FF4081</color>
+
+<!--    Add members bottomsheet-->
+    <color name="ism_grey">#757575</color>
+    <color name="ism_background_gray">#EEEEEE</color>
+    <color name="ism_participants_count_grey">#9E9E9E</color>
+
+    <!--  Member item-->
+    <color name="ism_leave_red">#E53935</color>
+    <color name="ism_admin_background_grey">#9E9E9E</color>
+    <color name="ism_admin_text_grey">#757575</color>
+    <color name="ism_online_green">#FF84DE04</color>
+    <color name="ism_offline_yellow">#FDD835</color>
+
+<!--  Add participants item  -->
+    <color name="ism_add_remove_background_blue">#00B3FF</color>
+    <color name="ism_add_remove_text_blue">#0389DB</color>
+
+    <!--Messages bottomsheet-->
+    <color name="ism_text_message_background_grey">#22000000</color>
+    <color name="ism_message_username_blue">#00B3FF</color>
+    <color name="ism_time_grey">#F5F5F5</color>
+    <color name="ism_red_dark">#EF5350</color>
+</resources>

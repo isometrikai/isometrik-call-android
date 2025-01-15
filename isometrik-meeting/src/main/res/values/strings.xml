@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string name="ism_app_name" translatable="false">Isometrik</string>
+    <string name="ism_error">Failed to complete requested operation, check Isometrik sdk logs for more details</string>
+
+    <!-- Users Activity   -->
+    <string name="ism_create_user">Create User</string>
+    <string name="ism_no_users">No registered users found</string>
+    <string name="ism_users">Users</string>
+    <string name="ism_select">Select</string>
+    <string name="ism_fetching_users">Fetching users</string>
+    <string name="ism_continue">CONTINUE</string>
+    <string name="ism_cancel">CANCEL</string>
+    <string name="ism_search_users_hint">Search users…</string>
+    <string name="ism_user_image_alert_heading">User profile image</string>
+    <string name="ism_user_image_alert_message">Create user without a profile image?</string>
+
+    <!-- Create User Activity   -->
+    <string name="ism_next">Next</string>
+    <string name="ism_user_name">User Name*</string>
+    <string name="ism_user_identifier">User Identifier*</string>
+    <string name="ism_user_password">User Password*</string>
+    <string name="ism_user_metadata">User Metadata</string>
+    <string name="ism_enter_user_name">Enter user name</string>
+    <string name="ism_enter_user_identifier">Enter username, phone or email</string>
+    <string name="ism_enter_user_password">Enter user password</string>
+    <string name="ism_enter_user_metadata">Enter user\'s additional info</string>
+    <string name="ism_select_user"> Select user</string>
+    <string name="ism_avoid_create_user">Don\'t wanna create user?</string>
+    <string name="ism_permission_image_capture">Grant permission to capture image!!</string>
+    <string name="ism_permission_image_capture_denied">Permission to capture image denied!!</string>
+    <string name="ism_image_capture_canceled">Image capture canceled!!</string>
+    <string name="ism_image_capture_failure">Failed to capture image!!</string>
+    <string name="ism_ok">OK</string>
+    <string name="ism_invalid_username">Add user name to continue!!</string>
+    <string name="ism_invalid_user_identifier">Add user identifier to continue!!</string>
+    <string name="ism_missing_user_password">Add user password to continue!!</string>
+    <string name="ism_invalid_user_password">Password must be atleast 6 characters long and should have atleast one each of digit,small,capital alphabets and special character!!</string>
+    <string name="ism_invalid_user_image">Add user profile pic to continue!!</string>
+    <string name="ism_creating_user">Creating user</string>
+    <string name="ism_uploading_image">Uploading image</string>
+
+
+    <!-- Edit User Activity   -->
+    <string name="ism_save">Save</string>
+    <string name="ism_edit_user">Edit User</string>
+    <string name="ism_updating_user_details">Updating user details</string>
+    <string name="ism_edit_user_details_canceled">Edit user details canceled!!</string>
+
+    <!-- User Details Activity   -->
+    <string name="ism_user_details">User Details</string>
+    <string name="ism_user_name_holder">User Name</string>
+    <string name="ism_user_identifier_holder">User Identifier</string>
+    <string name="ism_user_metadata_holder">User Metadata</string>
+    <string name="ism_user_notifications_holder">Notifications</string>
+    <string name="ism_switch_user">Switch User</string>
+    <string name="ism_deleting_user">Deleting user</string>
+
+    <string name="ism_yes">Yes</string>
+    <string name="ism_no">No</string>
+
+    <!--  Meetings list-->
+    <string name="ism_yesterday">Yesterday</string>
+    <string name="ism_at">\u0020at\u0020</string>
+    <string name="ism_today">Today</string>
+    <string name="ism_search_meetings">Search meetings…</string>
+    <string name="ism_no_meetings">No meetings found.</string>
+    <string name="ism_meeting_title_hint">Add meeting title…</string>
+    <string name="ism_join">Join</string>
+    <string name="ism_meeting_details">Created By: %1$s, Duration: %2$s, Members: %3$d</string>
+    <string name="ism_connection_lost">You are offline!!</string>
+    <string name="ism_meetings">Meetings</string>
+    <string name="ism_fetching_meetings">Fetching meetings</string>
+    <string name="ism_joining_meeting">Joining meeting</string>
+    <string name="ism_deleted_user">[Deleted user]</string>
+
+    <string name="ism_notification_permission_denied">Meeting notifications permission denied.</string>
+    <string name="ism_notification_permission_ask">Grant permission to receive meeting notifications</string>
+    <string name="ism_no_thanks">NO THANKS</string>
+    <string name="ism_notifications_permission">Notifications Permission</string>
+
+
+    <!--  Create Meeting-->
+    <string name="ism_select_member">Select Member</string>
+    <string name="ism_creating_meeting">Creating meeting</string>
+    <string name="ism_create_meeting">Create meeting</string>
+    <string name="ism_create_meeting_with">Create meeting with %1$s</string>
+    <string name="ism_add_meeting_title">Add meeting title to continue</string>
+    <string name="ism_permission_meeting">Grant permission to join or create meeting!!</string>
+    <string name="ism_permission_meeting_denied">Permission to join or create meeting denied!!</string>
+    <string name="ism_meeting">Meeting</string>
+
+    <!--  Capture image result activity-->
+    <string name="ism_done">Done</string>
+    <string name="ism_discard_image">Do you want to discard this image?</string>
+    <string name="ism_discard">Discard</string>
+
+    <!--  Camera activity-->
+    <string name="ism_image_capture_not_supported">Image capture not supported on devices with android version below lollipop.</string>
+
+    <!--Meeting -->
+    <string name="ism_reconnecting">Reconnecting…</string>
+    <string name="ism_disconnected">Disconnected…</string>
+    <string name="ism_connecting">Connecting…</string>
+
+    <!--Initiate Call-->
+    <string name="ism_select_opponent"> Select User</string>
+    <string name="ism_initiate_call_with">Initiate %1$s call with %2$s</string>
+    <string name="ism_initiate_call">Initiate call</string>
+    <string name="ism_initiating_call">Initiating call</string>
+
+    <!--    Incoming call screen-->
+    <string name="ism_call_type_video">VIDEO CALL</string>
+    <string name="ism_call_type_audio">AUDIO CALL</string>
+    <string name="ism_audio">Audio</string>
+    <string name="ism_video">Video</string>
+    <string name="ism_permission_call">Grant permission to accept call!!</string>
+    <string name="ism_permission_call_denied">Permission to accept call denied!!</string>
+
+    <!--IncomingCall Activity-->
+    <string name="ism_incoming_call_type">Incoming %1$s call</string>
+    <string name="ism_incoming_call">Incoming call</string>
+
+    <!--    Notification-->
+    <string name="ism_action_accept">ACCEPT_ACTION</string>
+    <string name="ism_action_reject">REJECT_ACTION</string>
+    <string name="ism_accept">Accept</string>
+    <string name="ism_reject">Reject</string>
+    <string name="ism_meeting_channel_id">Isometrik-Meeting</string>
+    <string name="ism_meeting_channel_name">Meetings</string>
+    <string name="ism_missed_call">Missed call</string>
+
+    <!--    Meeting Activity-->
+    <string name="ism_ringing">Ringing</string>
+    <string name="ism_dialing">Dialing</string>
+    <string name="ism_call_ringing_event">callRinging</string>
+
+    <!--    Add members bottomsheet-->
+    <string name="ism_add_participants">Add participants</string>
+    <string name="ism_admin">Admin</string>
+    <string name="ism_make_admin">Make admin</string>
+    <string name="ism_remove_as_admin">Remove from admin</string>
+
+    <!-- Add participants bottomsheet -->
+    <string name="ism_no_participants_to_add">No users found for adding to meeting.</string>
+    <string name="ism_add">Add</string>
+    <string name="ism_remove">Remove</string>
+    <string name="ism_fetching_participants">Fetching participants</string>
+    <string name="ism_adding_participants">Adding participants</string>
+    <string name="ism_atleast_one_participant">Select atleast participant to add to meeting</string>
+    <string name="ism_search_participants_to_add">Search participants to add…</string>
+    <string name="ism_add_participants_confirmation">Selected %1$d participants will be added to meeting</string>
+    <string name="ism_add_participant_confirmation">Selected participant will be added to meeting</string>
+    <string name="ism_max_participants_limit_reached">A meeting cannot have more than 100 members at time of creation. Other participants can be added later.</string>
+    <string name="ism_number_of_participants_selected">%1$s of %2$s participants</string>
+
+<!--    Messages bottomsheet-->
+    <string name="ism_send_message_hint">Send a message…</string>
+    <string name="ism_no_messages">No messages found</string>
+    <string name="ism_messages">Messages</string>
+    <string name="ism_removing_message">Removing message</string>
+    <string name="ism_delete_unsent_message">A message can only be deleted after it has been sent.</string>
+    <string name="ism_search_messages_hint">Search messages…</string>
+    <string name="ism_send_message">Send Message-</string>
+
+    <!-- Confirmation Alerts -->
+    <string name="ism_make_admin_alert_heading">Make %1$s admin</string>
+    <string name="ism_make_admin_alert_message">Granting admin privileges to a member will allow him to add/remove members, grant/revoke admin privileges and update settings of meeting</string>
+    <string name="ism_remove_as_admin_alert_heading">Remove %1$s as admin</string>
+    <string name="ism_remove_as_admin_alert_message">Once admin privileges are revoked, member will no longer be able to add/remove members, grant/revoke admin privileges or update settings of meeting</string>
+    <string name="ism_kick_out_member_heading">Kick-out %1$s</string>
+    <string name="ism_kick_out_member_alert_message">Once kicked out, a member will no longer be a member in meeting</string>
+
+<!--    Meeting details bottomsheet-->
+    <string name="ism_no_members">No members in conversation.</string>
+    <string name="ism_making_admin">Making %1$s admin</string>
+    <string name="ism_removing_admin">Removing %1$s from admin</string>
+    <string name="ism_kicking_out_member">Kicking %1$s out</string>
+    <string name="ism_search_members_hint">Search participants…</string>
+    <string name="ism_participants_count">%1$d PARTICIPANTS</string>
+
+</resources>

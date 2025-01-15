@@ -1,0 +1,221 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rlParent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:keepScreenOn="true"
+    >
+
+    <io.livekit.android.renderer.TextureViewRenderer
+        android:id="@+id/tvFullScreenView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/rlCardView"
+        android:layout_width="160dp"
+        android:layout_height="240dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/ism_dp_16">
+        <io.livekit.android.renderer.TextureViewRenderer
+            android:id="@+id/tvCardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRemoteAudioMutedCardView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="@dimen/ism_dp_8"
+            android:background="@drawable/ism_action_button_circle"
+            app:srcCompat="@drawable/ism_ic_mic_off"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/ivRemoteVideoMutedCardView"
+            android:visibility="invisible"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRemoteVideoMutedCardView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="@dimen/ism_dp_8"
+            android:background="@drawable/ism_action_button_circle"
+            app:srcCompat="@drawable/ism_ic_video_off"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/ism_dp_8"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlOverlay"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMeetingImage"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/ism_dp_80"
+            android:layout_marginTop="45dp"
+            app:srcCompat="@drawable/ism_ic_profile"
+            android:layout_height="@dimen/ism_dp_80"/>
+
+        <TextView
+            android:id="@+id/tvMeetingTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivMeetingImage"
+            android:textSize="@dimen/ism_sp_16"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:layout_margin="@dimen/ism_dp_13"
+            />
+
+        <TextView
+            android:id="@+id/tvMeetingDurationOrConnectionStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMeetingTitle"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivChat"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="@dimen/ism_dp_11"
+            android:elevation="3dp"
+            app:srcCompat="@drawable/ism_ic_chat"
+            android:background="@drawable/ism_action_button_circle"
+            android:layout_above="@id/rlControlPanel"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/ism_dp_16"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rlControlPanel"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/ism_control_plane_background_grey"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMuteVideo"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                app:srcCompat="@drawable/ism_ic_video"
+                android:background="@drawable/ism_action_button_circle"
+                android:layout_toStartOf="@id/ivMuteAudio"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/ism_dp_16"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMuteAudio"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                android:background="@drawable/ism_action_button_circle"
+                app:srcCompat="@drawable/ism_ic_mic"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/ism_dp_16"
+                android:layout_toStartOf="@+id/ivEndMeeting"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivEndMeeting"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ism_end_call_circle"
+                app:srcCompat="@drawable/ism_ic_call"
+                android:layout_margin="@dimen/ism_dp_16"
+                android:rotation="140"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSpeaker"
+                android:background="@drawable/ism_action_button_circle"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                app:srcCompat="@drawable/ism_ic_speaker"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/ivEndMeeting"
+                android:layout_margin="@dimen/ism_dp_16"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivSwitchCamera"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:padding="@dimen/ism_dp_11"
+                android:elevation="3dp"
+                android:layout_toEndOf="@+id/ivSpeaker"
+                android:background="@drawable/ism_action_button_circle"
+                app:srcCompat="@drawable/ism_ic_camera_switch"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/ism_dp_16"
+                />
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRemoteAudioMutedFullScreen"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="@dimen/ism_dp_11"
+            android:background="@drawable/ism_action_button_circle"
+            app:srcCompat="@drawable/ism_ic_mic_off"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/ivRemoteVideoMutedFullScreen"
+            android:visibility="invisible"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivRemoteVideoMutedFullScreen"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="@dimen/ism_dp_11"
+            android:background="@drawable/ism_action_button_circle"
+            app:srcCompat="@drawable/ism_ic_video_off"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/ism_dp_16"
+            android:layout_alignParentEnd="true"
+            android:visibility="invisible"
+            />
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivEndMeetingPip"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:padding="@dimen/ism_dp_11"
+        android:elevation="3dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ism_end_call_circle"
+        app:srcCompat="@drawable/ism_ic_call"
+        android:layout_margin="@dimen/ism_dp_30"
+        android:rotation="140"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        />
+</RelativeLayout>
