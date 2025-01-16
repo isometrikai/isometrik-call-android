@@ -174,6 +174,10 @@ public class Isometrik {
         return this.basePathManager.getConnectionsBasePath();
     }
 
+    public int getPort(){
+        return this.basePathManager.getPort();
+    }
+
     /**
      * Gets configuration.
      *
