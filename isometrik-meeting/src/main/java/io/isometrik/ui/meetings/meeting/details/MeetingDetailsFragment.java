@@ -253,7 +253,7 @@ public class MeetingDetailsFragment extends BottomSheetDialogFragment implements
         try {
             dialog.setOnShowListener(dialog1 -> new Handler().postDelayed(() -> {
                 BottomSheetDialog d = (BottomSheetDialog) dialog1;
-                FrameLayout bottomSheet = d.findViewById(R.id.design_bottom_sheet);
+                FrameLayout bottomSheet = d.findViewById(com.google.android.material.R.id.design_bottom_sheet);
                 @SuppressWarnings("rawtypes") BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
                 bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             }, 0));

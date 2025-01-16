@@ -5,8 +5,13 @@ plugins {
 }
 
 android {
+  namespace = "io.isometrik.samples.meeting"
+
   compileSdk 34
-  buildToolsVersion '34.0.0'
+
+  buildFeatures {
+    buildConfig = true
+  }
 
   defaultConfig {
     applicationId "io.isometrik.samples.meeting"
@@ -31,8 +36,8 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
 }
 
