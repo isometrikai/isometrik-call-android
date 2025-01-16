@@ -17,13 +17,12 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityInitiateCallBinding;
 import io.isometrik.ui.meetings.create.CreateMeetingContract;
 import io.isometrik.ui.meetings.create.CreateMeetingPresenter;
 import io.isometrik.ui.meetings.create.UsersModel;
-import io.isometrik.ui.meetings.create.onetoone.UsersAdapter;
 import io.isometrik.ui.meetings.create.onetoone.enums.CallType;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
 import io.isometrik.ui.utils.AlertProgress;
@@ -223,7 +222,7 @@ public class InitiateCallActivity extends AppCompatActivity implements CreateMee
 
             dialog.cancel();
             showProgressDialog(getString(R.string.ism_initiating_call));
-            createMeetingPresenter.createMeeting(user.getUserId(), user.getUserName() + "_" + IsometrikUiSdk.getInstance().getUserSession().getUserName(), user.getUserName(), user.getUserProfileImageUrl(), callType.getValue());
+            createMeetingPresenter.createMeeting(user.getUserId(), user.getUserName() + "_" + IsometrikCallSdk.getInstance().getUserSession().getUserName(), user.getUserName(), user.getUserProfileImageUrl(), callType.getValue());
 
         }).setNegativeButton(getString(R.string.ism_no), (dialog, id) -> dialog.cancel()).create().show();
     }

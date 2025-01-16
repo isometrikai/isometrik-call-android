@@ -31,17 +31,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityMeetingsBinding;
 import io.isometrik.ui.meetings.create.onetoone.InitiateCallActivity;
-import io.isometrik.ui.meetings.list.MeetingsContract;
-import io.isometrik.ui.meetings.list.MeetingsModel;
-import io.isometrik.ui.meetings.list.MeetingsPresenter;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
 import io.isometrik.ui.users.details.UserDetailsActivity;
 import io.isometrik.ui.utils.AlertProgress;
+
 import com.bumptech.glide.Glide;
+
 import io.isometrik.ui.utils.PlaceholderUtils;
 
 public class MeetingsActivity extends AppCompatActivity implements MeetingsContract.View {
@@ -104,12 +103,15 @@ public class MeetingsActivity extends AppCompatActivity implements MeetingsContr
             }
         });
 
-        try {
-            IsometrikUiSdk.getInstance().getIsometrik().getExecutor().execute(() -> IsometrikUiSdk.getInstance().getIsometrik().createConnection(IsometrikUiSdk.getInstance().getUserSession().getUserId() + IsometrikUiSdk.getInstance().getUserSession().getDeviceId(), IsometrikUiSdk.getInstance().getUserSession().getUserToken()));
-        } catch (Exception ignore) {
-
-        }
-        loadUserImage(IsometrikUiSdk.getInstance().getUserSession().getUserProfilePic());
+//        try {
+//            IsometrikCallSdk.getInstance().getIsometrik().getExecutor().execute(() ->
+//                    IsometrikCallSdk.getInstance().getIsometrik()
+//                            .createConnection(IsometrikCallSdk.getInstance().getUserSession().getUserId()
+//                                    + IsometrikCallSdk.getInstance().getUserSession().getDeviceId(), IsometrikCallSdk.getInstance().getUserSession().getUserToken()));
+//        } catch (Exception ignore) {
+//
+//        }
+        loadUserImage(IsometrikCallSdk.getInstance().getUserSession().getUserProfilePic());
 
 
         ismActivityMeetingsBinding.ivUserImage.setOnClickListener(v -> startActivity(new Intent(this, UserDetailsActivity.class)));
@@ -120,7 +122,7 @@ public class MeetingsActivity extends AppCompatActivity implements MeetingsContr
         askNotificationPermission();
         NotificationManagerCompat.from(this).cancelAll();
 
-        IsometrikUiSdk.getInstance().getUserSession().setUserIsBusy(false);
+        IsometrikCallSdk.getInstance().getUserSession().setUserIsBusy(false);
     }
 
 
@@ -240,7 +242,7 @@ public class MeetingsActivity extends AppCompatActivity implements MeetingsContr
                 } catch (IllegalArgumentException | NullPointerException ignore) {
                 }
             } else {
-                PlaceholderUtils.setTextRoundDrawable(MeetingsActivity.this, IsometrikUiSdk.getInstance().getUserSession().getUserName(), ismActivityMeetingsBinding.ivUserImage, 13);
+                PlaceholderUtils.setTextRoundDrawable(MeetingsActivity.this, IsometrikCallSdk.getInstance().getUserSession().getUserName(), ismActivityMeetingsBinding.ivUserImage, 13);
             }
         });
     }

@@ -28,7 +28,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityIncomingCallBinding;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
@@ -91,7 +91,7 @@ public class IncomingCallActivity extends AppCompatActivity implements IncomingC
             } catch (IllegalArgumentException | NullPointerException ignore) {
             }
         } else {
-            PlaceholderUtils.setTextRoundDrawable(IncomingCallActivity.this, IsometrikUiSdk.getInstance().getUserSession().getUserName(), ismActivityIncomingCallBinding.ivMeetingImage, 60);
+            PlaceholderUtils.setTextRoundDrawable(IncomingCallActivity.this, IsometrikCallSdk.getInstance().getUserSession().getUserName(), ismActivityIncomingCallBinding.ivMeetingImage, 60);
         }
         ismActivityIncomingCallBinding.ivAccept.setOnClickListener(view1 -> {
             ismActivityIncomingCallBinding.ivAccept.setEnabled(false);
@@ -113,7 +113,7 @@ public class IncomingCallActivity extends AppCompatActivity implements IncomingC
             }
         }, Constants.RINGING_DURATION_MILLISECONDS);
 
-        IsometrikUiSdk.getInstance().getUserSession().setUserIsBusy(true);
+        IsometrikCallSdk.getInstance().getUserSession().setUserIsBusy(true);
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.cancel(meetingId, NotificationUtil.getNotificationId(meetingId));
 
@@ -160,7 +160,7 @@ public class IncomingCallActivity extends AppCompatActivity implements IncomingC
             } catch (Exception ignore) {
             }
             if (!joinMeetingRequestAccepted) {
-                IsometrikUiSdk.getInstance().getUserSession().setUserIsBusy(false);
+                IsometrikCallSdk.getInstance().getUserSession().setUserIsBusy(false);
             }
         }
     }

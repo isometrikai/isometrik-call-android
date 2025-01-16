@@ -24,7 +24,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.google.android.material.snackbar.Snackbar;
 
 import io.isometrik.meeting.builder.action.AcceptJoinMeetingRequestQuery;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityAcceptCallFromNotificationBinding;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
@@ -79,7 +79,7 @@ public class AcceptCallFromNotificationActivity extends AppCompatActivity {
             } catch (IllegalArgumentException | NullPointerException ignore) {
             }
         } else {
-            PlaceholderUtils.setTextRoundDrawable(AcceptCallFromNotificationActivity.this, IsometrikUiSdk.getInstance().getUserSession().getUserName(), ismActivityAcceptCallFromNotificationBinding.ivMeetingImage, 60);
+            PlaceholderUtils.setTextRoundDrawable(AcceptCallFromNotificationActivity.this, IsometrikCallSdk.getInstance().getUserSession().getUserName(), ismActivityAcceptCallFromNotificationBinding.ivMeetingImage, 60);
         }
         checkJoinMeetingPermissions();
     }
@@ -138,7 +138,7 @@ public class AcceptCallFromNotificationActivity extends AppCompatActivity {
 
     private void handlePermissionsGranted() {
 
-        IsometrikUiSdk.getInstance().getIsometrik().getRemoteUseCases().getActionUseCases().acceptJoinMeetingRequest(new AcceptJoinMeetingRequestQuery.Builder().setDeviceId(IsometrikUiSdk.getInstance().getUserSession().getDeviceId()).setMeetingId(meetingId).setUserToken(IsometrikUiSdk.getInstance().getUserSession().getUserToken()).build(), (var1, var2) -> {
+        IsometrikCallSdk.getInstance().getIsometrik().getRemoteUseCases().getActionUseCases().acceptJoinMeetingRequest(new AcceptJoinMeetingRequestQuery.Builder().setDeviceId(IsometrikCallSdk.getInstance().getUserSession().getDeviceId()).setMeetingId(meetingId).setUserToken(IsometrikCallSdk.getInstance().getUserSession().getUserToken()).build(), (var1, var2) -> {
             if (var1 != null) {
                 Intent intent = new Intent(AcceptCallFromNotificationActivity.this, MeetingActivity.class);
                 intent.putExtra("audioOnly", audioOnly);

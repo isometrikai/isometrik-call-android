@@ -6,7 +6,7 @@ import io.isometrik.meeting.Isometrik;
 import io.isometrik.meeting.builder.member.AddMembersQuery;
 import io.isometrik.meeting.builder.member.FetchEligibleMembersQuery;
 import io.isometrik.meeting.response.member.FetchEligibleMembersResult;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.ui.utils.Constants;
 
 /**
@@ -37,9 +37,9 @@ public class AddParticipantsPresenter implements AddParticipantsContract.Present
     private String meetingId;
 
     private AddParticipantsContract.View addParticipantsView;
-    private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
+    private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
 
-    private final String userToken = IsometrikUiSdk.getInstance().getUserSession().getUserToken();
+    private final String userToken = IsometrikCallSdk.getInstance().getUserSession().getUserToken();
 
     private int offset;
     private boolean isLastPage;

@@ -12,22 +12,22 @@ import io.isometrik.ui.utils.UserSession;
 /**
  * The IsometrikUiSdk singleton to expose sdk functionality to other modules.
  */
-public class IsometrikUiSdk {
+public class IsometrikCallSdk {
 
     private Isometrik isometrik;
     private UserSession userSession;
     private String applicationId;
     private String applicationName;
     private Context applicationContext;
-    private static volatile IsometrikUiSdk isometrikUiSdk;
+    private static volatile IsometrikCallSdk isometrikCallSdk;
 
     /**
      * private constructor.
      */
-    private IsometrikUiSdk() {
+    private IsometrikCallSdk() {
 
         //Prevent form the reflection api.
-        if (isometrikUiSdk != null) {
+        if (isometrikCallSdk != null) {
             throw new RuntimeException(
                     "Use getInstance() method to get the single instance of this class.");
         }
@@ -38,15 +38,15 @@ public class IsometrikUiSdk {
      *
      * @return the IsometrikUiSdk instance
      */
-    public static IsometrikUiSdk getInstance() {
-        if (isometrikUiSdk == null) {
-            synchronized (IsometrikUiSdk.class) {
-                if (isometrikUiSdk == null) {
-                    isometrikUiSdk = new IsometrikUiSdk();
+    public static IsometrikCallSdk getInstance() {
+        if (isometrikCallSdk == null) {
+            synchronized (IsometrikCallSdk.class) {
+                if (isometrikCallSdk == null) {
+                    isometrikCallSdk = new IsometrikCallSdk();
                 }
             }
         }
-        return isometrikUiSdk;
+        return isometrikCallSdk;
     }
 
     /**

@@ -16,7 +16,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityUserDetailsBinding;
 import io.isometrik.ui.users.edit.EditUserActivity;
@@ -55,7 +55,7 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
         userDetailsPresenter = new UserDetailsPresenter(this);
         alertProgress = new AlertProgress();
 
-        userSession = IsometrikUiSdk.getInstance().getUserSession();
+        userSession = IsometrikCallSdk.getInstance().getUserSession();
 
         updateUserDetails(false, userSession.getUserName(), userSession.getUserIdentifier(),
                 userSession.getUserProfilePic(), userSession.getUserMetadata(),

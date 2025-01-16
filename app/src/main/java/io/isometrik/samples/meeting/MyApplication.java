@@ -1,7 +1,7 @@
 package io.isometrik.samples.meeting;
 
 import android.app.Application;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 
 public class MyApplication extends Application {
 
@@ -9,8 +9,8 @@ public class MyApplication extends Application {
   public void onCreate() {
     super.onCreate();
 
-    IsometrikUiSdk.getInstance().sdkInitialize(this);
-    IsometrikUiSdk.getInstance()
+    IsometrikCallSdk.getInstance().sdkInitialize(this);
+    IsometrikCallSdk.getInstance()
         .createConfiguration(getString(R.string.app_secret), getString(R.string.user_secret),
             getString(R.string.connection_string), getString(R.string.license_key),
             BuildConfig.APPLICATION_ID,getString(R.string.app_name));
@@ -18,7 +18,7 @@ public class MyApplication extends Application {
 
   @Override
   public void onTerminate() {
-    IsometrikUiSdk.getInstance().onTerminate();
+    IsometrikCallSdk.getInstance().onTerminate();
     super.onTerminate();
   }
 }

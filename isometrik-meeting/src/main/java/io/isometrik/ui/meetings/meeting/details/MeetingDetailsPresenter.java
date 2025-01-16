@@ -9,7 +9,7 @@ import io.isometrik.meeting.builder.member.FetchMembersQuery;
 import io.isometrik.meeting.builder.member.RemoveAdminQuery;
 import io.isometrik.meeting.builder.member.RemoveMembersQuery;
 import io.isometrik.meeting.response.member.FetchMembersResult;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.ui.utils.Constants;
 
 
@@ -23,15 +23,15 @@ public class MeetingDetailsPresenter implements MeetingDetailsContract.Presenter
 
 
     private boolean isLoading;
-    private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
-    private final String userToken = IsometrikUiSdk.getInstance().getUserSession().getUserToken();
+    private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
+    private final String userToken = IsometrikCallSdk.getInstance().getUserSession().getUserToken();
     private boolean isSearchRequest;
     private String searchTag, meetingId;
     private final int PAGE_SIZE = Constants.MEMBERS_PAGE_SIZE;
     private boolean isLastPage, isUserAnAdmin;
     private int offset;
 
-    private final String userId = IsometrikUiSdk.getInstance().getUserSession().getUserId();
+    private final String userId = IsometrikCallSdk.getInstance().getUserSession().getUserId();
 
     @Override
     public void attachView(MeetingDetailsContract.View meetingDetailsView) {

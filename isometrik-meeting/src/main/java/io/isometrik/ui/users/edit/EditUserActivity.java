@@ -30,7 +30,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.ui.camera.CameraActivity;
 import io.isometrik.meeting.databinding.IsmActivityEditUserBinding;
@@ -76,7 +76,7 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
     editUserPresenter = new EditUserPresenter(this);
     alertProgress = new AlertProgress();
 
-    userSession = IsometrikUiSdk.getInstance().getUserSession();
+    userSession = IsometrikCallSdk.getInstance().getUserSession();
     addUserDetails();
 
     ismActivityEditUserBinding.btSave.setOnClickListener(v -> {
@@ -298,7 +298,7 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
 
     if (userMetadataUpdated) {
       intent.putExtra("userMetadata",
-          IsometrikUiSdk.getInstance().getUserSession().getUserMetadata().toString());
+          IsometrikCallSdk.getInstance().getUserSession().getUserMetadata().toString());
     } else {
       JSONObject metadata = new JSONObject();
       try {

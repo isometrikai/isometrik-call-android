@@ -26,7 +26,7 @@ import io.isometrik.meeting.rtcengine.ConnectionQuality
 import io.isometrik.meeting.rtcengine.MeetingOperations
 import io.isometrik.meeting.rtcengine.MeetingSessionEventsHandler
 import io.isometrik.meeting.rtcengine.RemoteUsersAudioLevelInfo
-import io.isometrik.ui.IsometrikUiSdk
+import io.isometrik.ui.IsometrikCallSdk
 import io.isometrik.meeting.R
 import io.isometrik.meeting.databinding.IsmActivityMeetingBinding
 import io.isometrik.ui.utils.CallingToneUtils
@@ -309,7 +309,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
             ismActivityMeetingBinding.tvMeetingDurationOrConnectionStatus.text = getString(R.string.ism_connecting)
         }
 
-        meetingOperations.joinMeetingAsync(applicationContext, intent.getStringExtra("rtcToken"), hdMeeting, !audioOnly, IsometrikUiSdk.getInstance().userSession.userId)
+        meetingOperations.joinMeetingAsync(applicationContext, intent.getStringExtra("rtcToken"), hdMeeting, !audioOnly, IsometrikCallSdk.getInstance().userSession.userId)
 
         val meetingImageUrl = intent.getStringExtra("meetingImageUrl")
         try {
@@ -349,7 +349,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
                 }
             }, Constants.RINGING_DURATION_MILLISECONDS.toLong())
         }
-        IsometrikUiSdk.getInstance().userSession.setUserIsBusy(true)
+        IsometrikCallSdk.getInstance().userSession.setUserIsBusy(true)
         val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.cancel(meetingId, NotificationUtil.getNotificationId(meetingId))
     }
@@ -475,7 +475,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
                 finish()
             } catch (ignore: Exception) {
             }
-            IsometrikUiSdk.getInstance().userSession.setUserIsBusy(false)
+            IsometrikCallSdk.getInstance().userSession.setUserIsBusy(false)
         }
     }
 
@@ -554,7 +554,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
 
     override fun onParticipantDisconnected(meetingId: String?, memberId: String?, memberUid: Int) {
         if (this.meetingId == meetingId) {
-            if (memberId != (IsometrikUiSdk.getInstance().userSession.userId)) {
+            if (memberId != (IsometrikCallSdk.getInstance().userSession.userId)) {
                 Log.e("onError","onParticipantDisconnected==> ")
 
                 unregisterListeners()
@@ -573,7 +573,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
 
     override fun onVideoTrackMuteStateChange(meetingId: String?, memberId: String?, memberUid: Int, muted: Boolean) {
         if (this.meetingId == meetingId) {
-            if (memberId != (IsometrikUiSdk.getInstance().userSession.userId)) {
+            if (memberId != (IsometrikCallSdk.getInstance().userSession.userId)) {
                 runOnUiThread {
                     if (muted) {
                         if (localTrackInFullScreen) {
@@ -597,7 +597,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
 
     override fun onAudioTrackMuteStateChange(meetingId: String?, memberId: String?, memberUid: Int, muted: Boolean) {
         if (this.meetingId == meetingId) {
-            if (memberId != (IsometrikUiSdk.getInstance().userSession.userId)) {
+            if (memberId != (IsometrikCallSdk.getInstance().userSession.userId)) {
                 runOnUiThread {
 
                     if (muted) {

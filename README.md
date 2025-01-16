@@ -31,7 +31,7 @@ Open your build.gradle file (app-level) and add the following line in the depend
 
 ```groovy
 dependencies {
-    implementation 'com.github.isometrikai:isometrik-chat-android:1.3.3'
+    implementation 'com.github.isometrikai:isometrik-call-android:1.0.9'
 }
 ```
 ### Step 3: Sync Your Project
@@ -48,7 +48,7 @@ Follow the steps below to integrate and configure the Isometrik UI SDK in your A
 Initialize the SDK in your project's `Application` class, specifically within the `onCreate()` method.
 
 ```java
-IsometrikChatSdk.getInstance().sdkInitialize(this);
+IsometrikCallSdk.getInstance().sdkInitialize(this);
 ```
 
 ## Step 2: SDK Configuration
@@ -58,268 +58,93 @@ Configure the SDK in the first method called in your app, typically within the `
 - `app_secret`
 - `user_secret`
 - `license_key`
-- `google_places_api_key`
-- `giphy_api_key`
 - `accountId`
 - `projectId`
 - `keysetId`
 
 Provide these details using the parameters in the method below:
 
-```java
-IsometrikChatSdk.getInstance()
-        .createConfiguration(
-            getString(R.string.app_secret),
-            getString(R.string.user_secret),
-            getString(R.string.accountId),
-            getString(R.string.projectId),
-            getString(R.string.keysetId),
-            userName,
-            password,
-            getString(R.string.license_key),
-            BuildConfig.APPLICATION_ID,
-            getString(R.string.app_name),
-            getString(R.string.google_places_api_key),
-            getString(R.string.giphy_api_key)
-        );
+```kotlin
 
-        IsometrikChatSdk.getInstance()
-                            .getUserSession()
-                            .switchUser(isoMetricUserId, isoMetricToken, userName, userIdentifier,
-                                    userProfilePic, false, new JSONObject(),true,0);
+ val conString = accountId + projectId + keysetId
+IsometrikCallSdk.getInstance()
+                .createConfiguration(
+                    getString(R.string.app_secret),
+                    getString(R.string.user_secret),
+                    conString,
+                    licenseKey,
+                    BuildConfig.APPLICATION_ID,
+                    getString(R.string.app_name)
+
+                )
+
 
 ```
 To handle SDK termination, call the following method, usually in the onTerminate() method of the Application class:
 
 ```java
-IsometrikChatSdk.getInstance().onTerminate();
+IsometrikCallSdk.getInstance().onTerminate();
 ```
 
 ## Step 3: Create a Connection
 
 Establish a connection on the base screen of your app (e.g., `MainActivity` or `LandingActivity`) before accessing the chat functionality. You will need the following details:
 
-- `userClientId` (isometrikUserId)
+- `userClientId` (isometrikUserId + DeviceId)
 - `userIsometrikToken`
 
 Use the following method to create a connection:
 
 ```java
-IsometrikChatSdk.getInstance().getIsometrik().createConnection(userClientId, userIsometrikToken);
+
+IsometrikCallSdk.getInstance().getIsometrik().createConnection(userClientId, userIsometrikToken);
 ```
 
-### Step 4: Start a Conversation
-You are now ready to start a conversation. You can launch ConversationsListActivity or load ConversationsListFragment from any click action in your app:
+### Step 4: Start a Call
+You are now ready fro audio/video call.
 
 ```java
- Intent intent = new Intent(this, ConversationsActivity.class);
- startActivity(intent);
-```
-  for fragment
-```java
-ConversationsListFragment fragment = new ConversationsListFragment();
 
-getSupportFragmentManager()
-        .beginTransaction()
-        .replace(R.id.fragment_container, fragment)
-        .commit();
-```
+     public void startCall() {
 
-### Create a Conversation
-start new conversation from any action in your project
+         String memberId = "userID";
+         String customType = CallType.AudioCall.getValue();  //  "AudioCall/VideoCall";
+         String meetingDescription = "opponentUserName + _ + IsometrikCallSdk.getInstance().getUserSession().getUserName()";
+         String opponentName = "opponentName";
+         String opponentImageUrl = "opponentImageUrl";
 
-```java
-  isometrik.getRemoteUseCases()
-                .getConversationUseCases()
-                .createConversation(new CreateConversationQuery.Builder().setUserToken(userToken)
-                        .setGroup(false)
-                        .setConversationType(0)
-                        .setMembers(Collections.singletonList(selectedUserId))
-                        .setReadEvents(enableMessageDeliveryReadEvents)
-                        .setTypingEvents(enableMessageTypingEvents)
-                        .setPushNotifications(enablePushNotifications)
-                        .setSearchableTags(searchableTags)
-                        .build(), (var1, var2) -> {
-                    if (var1 != null) {
-                        String conversationId = var1.getConversationId();
-                        Intent intent =
-                                      new Intent(YourActivity.this, ConversationMessagesActivity.class);
-                                intent.putExtra("messageDeliveryReadEventsEnabled",true);
-                                intent.putExtra("typingEventsEnabled",true);
-                                intent.putExtra("newConversation", true);
-                                intent.putExtra("conversationId", conversationId);
-                                intent.putExtra("isPrivateOneToOne", true);
-                                intent.putExtra("userName", your.userName);
-                                intent.putExtra("userImageUrl", your.profilePicUrl);
-                                intent.putExtra("isOnline", false);
-                                intent.putExtra("lastSeenAt", "");
-                                intent.putExtra("userId", your.userId);
-                                startActivity(intent);
-                    }
-                });
+
+         CreateMeetingQuery createMeetingQuery = new CreateMeetingQuery.Builder()
+                 .setHdMeeting(true)
+                 .setAudioOnly(customType.equals(CallType.AudioCall.getValue()))
+                 .setAutoTerminate(true)
+                 .setMeetingDescription(meetingDescription)
+                 .setMeetingType(MeetingType.NormalMeeting.getValue())
+                 .setUserToken(userToken)
+                 .setSelfHosted(true)
+                 .setEnableRecording(false)
+                 .setDeviceId(IsometrikCallSdk.getInstance().getUserSession().getDeviceId())
+                 .setMembers(Collections.singletonList(memberId)).setPushNotifications(true)
+                 .setSearchableTags(Collections.singletonList(meetingDescription))
+                 .setCustomType(customType).build();
+
+         IsometrikCallSdk.getInstance().getIsometrik().getRemoteUseCases().getMeetingUseCases().createMeeting(createMeetingQuery, (var1, var2) -> {
+             if (var1 != null) {
+                 Intent intent = new Intent(this, MeetingActivity.class);
+                 intent.putExtra("audioOnly", customType.equals(CallType.AudioCall.getValue()));
+                 intent.putExtra("hdMeeting", true);
+                 intent.putExtra("meetingTitle", opponentName);
+                 intent.putExtra("meetingImageUrl", opponentImageUrl);
+                 intent.putExtra("meetingId", var1.getMeetingId());
+                 intent.putExtra("rtcToken", var1.getRtcToken());
+                 intent.putExtra("meetingCreationTime", var1.getCreationTime());
+                 intent.putExtra("initiatingCall", true);
+                 startActivity(intent);
+             }
+         });
+     }
 
 ```
-
-# Customization
-
-## Handle a Custom Activity from Your Module
-
-To open a new screen for app module used below click listeners.
-
-```kotlin
-
-  IsometrikChatSdk.getInstance().addClickListeners(object : ChatActionsClickListener {
-
-              override fun onCreateChatIconClicked(isGroup: Boolean) {
-              // here default screen mentioned from SDK. We can respected screen from here.
-                  if (isGroup) {
-                        val i = Intent(
-                          this,
-                          io.isometrik.ui.conversations.newconversation.group.NewGroupConversationActivity::class.java
-                      )
-                      i.putExtra("conversationType", ConversationType.PrivateConversation.value)
-                      startActivity(i)
-                  } else {
-                      val i = Intent(
-                          this,
-                          io.isometrik.ui.conversations.newconversation.onetoone.NewOneToOneConversationActivity::class.java
-                      )
-                      startActivity(i)
-                  }
-
-              }
-
-              override fun onBlockStatusUpdate(isBlocked: Boolean, userId: String) {
-              }
-
-              override fun onCallClicked(
-                  isAudio: Boolean,
-                  userId: String,
-                  meetingDescription: String,
-                  opponentName: String,
-                  opponentImageUrl: String
-              ) {
-
-              }
-
-              override fun onSharedPostClick(postId: String) {
-
-              }
-
-              override fun onViewSocialProfileClick(userId: String) {
-
-              }
-          })
-
-```
-
-## Add custom view in ChatList Screen
-
-Check default view [here](isometrik-chat/src/main/java/io/isometrik/ui/conversations/list/DefaultChatListItemBinder.kt)
-
-```kotlin
-
-     val customBinder = object : ChatListItemBinder<ConversationsModel, ChatItemBinding> {
-            override fun createBinding(parent: ViewGroup): ChatItemBinding {
-                return ChatItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            }
-
-            override fun bindData(context: Context, binding: ChatItemBinding, data: ConversationsModel) {
-                binding.chatName.text = data.conversationTitle
-                binding.chatLastMessage.text = data.lastMessageSenderName
-
-            }
-        }
-
-        val chatFragment = ConversationsListFragment.newInstance(customBinder)
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, chatFragment)
-            .commit()
-
-```
-
-## Add custom view for any type of Message in Chat Screen
-
-Check total message type of UI [here](isometrik-chat/src/main/java/io/isometrik/chat/utils/enums/MessageTypeUi.kt)
-
-```kotlin
-
-               MessageBinderRegistry.registerBinder(
-                   MessageTypeUi.TEXT_MESSAGE_SENT,
-                   CustomTextSentBinder()
-               )
-
-              MessageBinderRegistry.registerBinder(
-                  MessageTypeUi.TEXT_MESSAGE_RECEIVED,
-                  CustomTextSentBinder()
-              )
-
-```
-
-## Add custom top view in Chat Screen
-
-```kotlin
-
-        class MyCustomTopViewHandler : ChatTopViewHandler {
-
-                   private var binding: CustomTopViewBinding? = null
-
-                   override fun createTopView(parent: ViewGroup): View {
-                       val inflater = LayoutInflater.from(parent.context)
-                       binding = CustomTopViewBinding.inflate(inflater, parent, false)
-                       return binding!!.root
-                   }
-
-                   override fun updateTopView(view: View, message: MessagesModel) {
-                       binding?.apply {
-                           rootView.visibility = View.VISIBLE
-                           tvTitle.text = message.textMessage
-                       }
-                   }
-               }
-
-
-               ChatConfig.topViewHandler = MyCustomTopViewHandler()
-
-```
-
-### Change base colors, default text, drawables and visibility of options
-
-Modify below file to update base color and other customisation.
-
-```kotlin
-
-ChatConfig.baseColor = R.color.your_base_color
-ChatConfig.chatBackGroundColor = R.color.your_bg_color
-
-ChatConfig.noConversationsStringResId = R.string.your_text
-ChatConfig.noConversationsImageResId = R.drawable.your_image
-ChatConfig.noConversationsImageResId = R.drawable.your_ima
-ChatConfig.hideCreateChatOption = true
-ChatConfig.hideAudioCallOption = true
-ChatConfig.hideVideoCallOption = true
-ChatConfig.hideCaptureCameraOption = true
-ChatConfig.hideRecordAudioOption = true
-
-```
-
-### Manage attachments options visibility by below file
-
-```kotlin
-
-AttachmentsConfig.hideCameraOption = true
-AttachmentsConfig.hideRecordVideoOption = true
-AttachmentsConfig.hidePhotosOption  = true
-AttachmentsConfig.hideVideosOption = true
-AttachmentsConfig.hideFilesOption = true
-AttachmentsConfig.hideLocationOption = true
-AttachmentsConfig.hideContactOption = true
-AttachmentsConfig.hideStickerOption = true
-AttachmentsConfig.hideGIFOption = true
-
-```
-
 
 # Technical details
 
@@ -331,6 +156,6 @@ AttachmentsConfig.hideGIFOption = true
 * targetCompatibility 17
 * JDK version 17
 * Kotlin version 1.9.23
-* One Signal version 5.1.21
+
 
 

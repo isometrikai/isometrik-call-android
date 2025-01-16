@@ -9,9 +9,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
-import io.isometrik.ui.utils.Constants;
 
 /**
  * The helper class to format epoch timestamp to human readable datetime.
@@ -54,7 +53,7 @@ public class TimeUtil {
       } else if (localDateTimeFromEpochTimestamp.getYear() == currentDateTime.getYear()) {
         if (Math.abs(
             localDateTimeFromEpochTimestamp.getDayOfYear() - currentDateTime.getDayOfYear()) == 1) {
-          return IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_yesterday);
+          return IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_yesterday);
         }
       }
       return localDateTimeFromEpochTimestamp.toString().substring(0, 10);
@@ -76,7 +75,7 @@ public class TimeUtil {
       } else if ((Long.parseLong((currentDateTimeString.substring(0, 8))) - Long.parseLong(
           (localDateTimeFromEpochTimestampString.substring(0, 8)))) == 1) {
 
-        return IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_yesterday);
+        return IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_yesterday);
       } else {
         return localDateTimeFromEpochTimestampString.substring(0, 4)
             + "-"
@@ -119,23 +118,23 @@ public class TimeUtil {
       if (localDateTimeFromEpochTimestamp.toString()
           .substring(0, 10)
           .equals(currentDateTime.toString().substring(0, 10))) {
-        return IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_today)
-            + IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_at)
+        return IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_today)
+            + IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_at)
             + hour
             + ":"
             + minute;
       } else if (localDateTimeFromEpochTimestamp.getYear() == currentDateTime.getYear()) {
         if (Math.abs(
             localDateTimeFromEpochTimestamp.getDayOfYear() - currentDateTime.getDayOfYear()) == 1) {
-          return IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_yesterday)
-              + IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_at)
+          return IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_yesterday)
+              + IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_at)
               + hour
               + ":"
               + minute;
         }
       }
       return localDateTimeFromEpochTimestamp.toString().substring(0, 10)
-          + IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_at)
+          + IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_at)
           + hour
           + ":"
           + minute;
@@ -150,16 +149,16 @@ public class TimeUtil {
       if ((currentDateTimeString.substring(0, 8)).equals(
           (localDateTimeFromEpochTimestampString.substring(0, 8)))) {
 
-        return IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_today)
-            + IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_at)
+        return IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_today)
+            + IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_at)
             + localDateTimeFromEpochTimestampString.substring(8, 10)
             + ":"
             + localDateTimeFromEpochTimestampString.substring(10, 12);
       } else if ((Long.parseLong((currentDateTimeString.substring(0, 8))) - Long.parseLong(
           (localDateTimeFromEpochTimestampString.substring(0, 8)))) == 1) {
 
-        return IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_yesterday)
-            + IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_at)
+        return IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_yesterday)
+            + IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_at)
             + localDateTimeFromEpochTimestampString.substring(8, 10)
             + ":"
             + localDateTimeFromEpochTimestampString.substring(10, 12);
@@ -171,7 +170,7 @@ public class TimeUtil {
                 + localDateTimeFromEpochTimestampString.substring(4, 6)
                 + "-"
                 + localDateTimeFromEpochTimestampString.substring(6, 8)
-                + IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_at)
+                + IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_at)
                 + localDateTimeFromEpochTimestampString.substring(8, 10)
                 + ":"
                 + localDateTimeFromEpochTimestampString.substring(10, 12);

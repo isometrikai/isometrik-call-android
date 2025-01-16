@@ -14,7 +14,7 @@ import io.isometrik.meeting.events.meeting.EndMeetingDueToNoUserPublishingEvent;
 import io.isometrik.meeting.events.meeting.EndMeetingDueToRejectionByAllEvent;
 import io.isometrik.meeting.events.meeting.EndMeetingEvent;
 import io.isometrik.meeting.events.message.PublishMessageEvent;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 
 
@@ -30,8 +30,8 @@ public class MeetingPresenter implements MeetingContract.Presenter {
     }
 
     private final MeetingContract.View meetingView;
-    private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
-    private final String userToken = IsometrikUiSdk.getInstance().getUserSession().getUserToken();
+    private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
+    private final String userToken = IsometrikCallSdk.getInstance().getUserSession().getUserToken();
 
 
     @Override
@@ -117,9 +117,9 @@ public class MeetingPresenter implements MeetingContract.Presenter {
         @Override
         public void messagePublished(@NotNull Isometrik isometrik, @NotNull PublishMessageEvent publishMessageEvent) {
             {
-                if (!publishMessageEvent.getSenderId().equals(IsometrikUiSdk.getInstance().getUserSession().getUserId())) {
+                if (!publishMessageEvent.getSenderId().equals(IsometrikCallSdk.getInstance().getUserSession().getUserId())) {
 
-                    if (publishMessageEvent.getMessage().equals(IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_call_ringing_event))) {
+                    if (publishMessageEvent.getMessage().equals(IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_call_ringing_event))) {
                         meetingView.onRingingForOpponent(publishMessageEvent.getMeetingId());
                     }
                 }

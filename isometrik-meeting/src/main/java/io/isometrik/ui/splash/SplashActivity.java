@@ -6,7 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.ui.meetings.list.MeetingsActivity;
 import io.isometrik.ui.users.list.UsersActivity;
 
@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent;
-        if (IsometrikUiSdk.getInstance().getUserSession().getUserToken() == null) {
+        if (IsometrikCallSdk.getInstance().getUserSession().getUserToken() == null) {
 
             intent = new Intent(SplashActivity.this, UsersActivity.class);
         } else {

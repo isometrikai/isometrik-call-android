@@ -8,13 +8,13 @@ import androidx.core.app.NotificationManagerCompat;
 
 import io.isometrik.meeting.Isometrik;
 import io.isometrik.meeting.builder.action.RejectJoinMeetingRequestQuery;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.ui.utils.NotificationUtil;
 
 public class NotificationBroadcastReceiver extends BroadcastReceiver {
 
-    private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
+    private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -24,7 +24,7 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
 
             if (meetingId != null) {
                 if (intent.getAction().equals(context.getString(R.string.ism_action_reject))) {
-                    isometrik.getRemoteUseCases().getActionUseCases().rejectJoinMeetingRequest(new RejectJoinMeetingRequestQuery.Builder().setMeetingId(intent.getStringExtra("meetingId")).setUserToken(IsometrikUiSdk.getInstance().getUserSession().getUserToken()).build(), (var1, var2) -> {
+                    isometrik.getRemoteUseCases().getActionUseCases().rejectJoinMeetingRequest(new RejectJoinMeetingRequestQuery.Builder().setMeetingId(intent.getStringExtra("meetingId")).setUserToken(IsometrikCallSdk.getInstance().getUserSession().getUserToken()).build(), (var1, var2) -> {
 
                     });
                 }
