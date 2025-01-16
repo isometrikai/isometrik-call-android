@@ -1,5 +1,7 @@
 package io.isometrik.ui.meetings.create;
 
+import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -8,8 +10,10 @@ import io.isometrik.meeting.builder.meetings.CreateMeetingQuery;
 import io.isometrik.meeting.builder.user.block.FetchNonBlockedUsersQuery;
 import io.isometrik.meeting.enums.MeetingType;
 import io.isometrik.meeting.response.user.utils.NonBlockedUser;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
+import io.isometrik.ui.meetings.create.onetoone.InitiateCallActivity;
 import io.isometrik.ui.meetings.create.onetoone.enums.CallType;
+import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
 import io.isometrik.ui.utils.Constants;
 
 
@@ -25,8 +29,8 @@ public class CreateMeetingPresenter implements CreateMeetingContract.Presenter {
     }
 
     private final CreateMeetingContract.View createMeetingView;
-    private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
-    private final String userToken = IsometrikUiSdk.getInstance().getUserSession().getUserToken();
+    private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
+    private final String userToken = IsometrikCallSdk.getInstance().getUserSession().getUserToken();
     private int offset;
     private boolean isLastPage;
     private boolean isLoading;
@@ -102,7 +106,7 @@ public class CreateMeetingPresenter implements CreateMeetingContract.Presenter {
 
     @Override
     public void createMeeting(String memberId, String meetingDescription, String opponentName, String opponentImageUrl, String customType) {
-        isometrik.getRemoteUseCases().getMeetingUseCases().createMeeting(new CreateMeetingQuery.Builder().setHdMeeting(true).setAudioOnly(customType.equals(CallType.AudioCall.getValue())).setAutoTerminate(true).setMeetingDescription(meetingDescription).setMeetingType(MeetingType.NormalMeeting.getValue()).setUserToken(userToken).setSelfHosted(true).setEnableRecording(false).setDeviceId(IsometrikUiSdk.getInstance().getUserSession().getDeviceId()).setMembers(Collections.singletonList(memberId)).setPushNotifications(true).setSearchableTags(Collections.singletonList(meetingDescription)).setCustomType(customType).build(), (var1, var2) -> {
+        isometrik.getRemoteUseCases().getMeetingUseCases().createMeeting(new CreateMeetingQuery.Builder().setHdMeeting(true).setAudioOnly(customType.equals(CallType.AudioCall.getValue())).setAutoTerminate(true).setMeetingDescription(meetingDescription).setMeetingType(MeetingType.NormalMeeting.getValue()).setUserToken(userToken).setSelfHosted(true).setEnableRecording(false).setDeviceId(IsometrikCallSdk.getInstance().getUserSession().getDeviceId()).setMembers(Collections.singletonList(memberId)).setPushNotifications(true).setSearchableTags(Collections.singletonList(meetingDescription)).setCustomType(customType).build(), (var1, var2) -> {
             if (var1 != null) {
                 createMeetingView.onMeetingCreated(var1.getMeetingId(), var1.getRtcToken(), opponentName, opponentImageUrl, var1.getCreationTime(), customType);
             } else {

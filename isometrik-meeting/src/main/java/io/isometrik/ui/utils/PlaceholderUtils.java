@@ -11,10 +11,8 @@ import android.widget.ImageView;
 
 import androidx.core.content.ContextCompat;
 
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
-import io.isometrik.ui.utils.ColorsUtil;
-import io.isometrik.ui.utils.Constants;
 
 /**
  * The helper class to generate dynamic placeholders using initials of text, code to check if image
@@ -56,7 +54,7 @@ public class PlaceholderUtils {
     String initials = "";
     if (firstName != null) {
       if (firstName.equals(
-          IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_deleted_user))) {
+          IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_deleted_user))) {
         firstName = firstName.substring(1);
       }
       if (firstName.length() >= 2) {
@@ -96,7 +94,7 @@ public class PlaceholderUtils {
     String initials = "";
     if (firstName != null) {
       if (firstName.equals(
-          IsometrikUiSdk.getInstance().getContext().getString(R.string.ism_deleted_user))) {
+          IsometrikCallSdk.getInstance().getContext().getString(R.string.ism_deleted_user))) {
         firstName = firstName.substring(1);
       }
       if (firstName.length() >= 2) {

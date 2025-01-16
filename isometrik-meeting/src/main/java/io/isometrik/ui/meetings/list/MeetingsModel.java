@@ -7,7 +7,7 @@ import io.isometrik.meeting.events.meeting.CreateMeetingEvent;
 import io.isometrik.meeting.events.meeting.utils.MeetingMembers;
 import io.isometrik.meeting.response.meeting.utils.Meeting;
 import io.isometrik.meeting.response.meeting.utils.Member;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.ui.utils.TimeUtil;
 
 /**
@@ -44,7 +44,7 @@ public class MeetingsModel {
         audioOnly = meeting.isAudioOnly();
         hdMeeting = meeting.isHdMeeting();
         ArrayList<Member> members = meeting.getMembers();
-        String userId = IsometrikUiSdk.getInstance().getUserSession().getUserId();
+        String userId = IsometrikCallSdk.getInstance().getUserSession().getUserId();
         if (members.get(0).getUserId().equals(userId)) {
             opponentName = members.get(1).getUserName();
             opponentImageUrl = members.get(1).getUserProfileImageUrl();
@@ -65,7 +65,7 @@ public class MeetingsModel {
         hdMeeting = createMeetingEvent.isHdMeeting();
 
         List<MeetingMembers> members = createMeetingEvent.getMembers();
-        String userId = IsometrikUiSdk.getInstance().getUserSession().getUserId();
+        String userId = IsometrikCallSdk.getInstance().getUserSession().getUserId();
         if (members.get(0).getMemberId().equals(userId)) {
             opponentName = members.get(1).getMemberName();
             opponentImageUrl = members.get(1).getMemberProfileImageUrl();

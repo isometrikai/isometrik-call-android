@@ -6,9 +6,7 @@ import io.isometrik.meeting.Isometrik;
 import io.isometrik.meeting.builder.user.AuthenticateUserQuery;
 import io.isometrik.meeting.builder.user.FetchUsersQuery;
 import io.isometrik.meeting.response.user.FetchUsersResult;
-import io.isometrik.ui.IsometrikUiSdk;
-import io.isometrik.ui.users.list.UsersContract;
-import io.isometrik.ui.users.list.UsersModel;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.ui.utils.Constants;
 
 /**
@@ -34,7 +32,7 @@ public class UsersPresenter implements UsersContract.Presenter {
   private boolean isLastPage;
   private boolean isLoading, authenticatingUser;
 
-  private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
+  private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
 
   private boolean isSearchRequest;
   private String searchTag;
@@ -128,7 +126,7 @@ public class UsersPresenter implements UsersContract.Presenter {
       isometrik.getRemoteUseCases().getUserUseCases().authenticateUser(builder.build(), (var1, var2) -> {
         authenticatingUser = false;
         if (var1 != null) {
-          IsometrikUiSdk.getInstance()
+          IsometrikCallSdk.getInstance()
               .getUserSession()
               .switchUser(var1.getUserId(), var1.getUserToken(), userModel.getUserName(),
                   userModel.getUserIdentifier(), userModel.getUserProfileImageUrl(), true,

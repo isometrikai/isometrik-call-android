@@ -13,7 +13,7 @@ import io.isometrik.meeting.events.meeting.CreateMeetingEvent;
 import io.isometrik.meeting.events.meeting.EndMeetingDueToNoUserPublishingEvent;
 import io.isometrik.meeting.events.meeting.EndMeetingDueToRejectionByAllEvent;
 import io.isometrik.meeting.events.meeting.EndMeetingEvent;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 
 
 public class IncomingCallPresenter implements IncomingCallContract.Presenter {
@@ -25,12 +25,12 @@ public class IncomingCallPresenter implements IncomingCallContract.Presenter {
 
     private final IncomingCallContract.View incomingCallsView;
 
-    private final Isometrik isometrik = IsometrikUiSdk.getInstance().getIsometrik();
-    private final String userToken = IsometrikUiSdk.getInstance().getUserSession().getUserToken();
+    private final Isometrik isometrik = IsometrikCallSdk.getInstance().getIsometrik();
+    private final String userToken = IsometrikCallSdk.getInstance().getUserSession().getUserToken();
 
     @Override
     public void acceptJoinMeetingRequest(String meetingId) {
-        isometrik.getRemoteUseCases().getActionUseCases().acceptJoinMeetingRequest(new AcceptJoinMeetingRequestQuery.Builder().setDeviceId(IsometrikUiSdk.getInstance().getUserSession().getDeviceId()).setMeetingId(meetingId).setUserToken(userToken).build(), (var1, var2) -> {
+        isometrik.getRemoteUseCases().getActionUseCases().acceptJoinMeetingRequest(new AcceptJoinMeetingRequestQuery.Builder().setDeviceId(IsometrikCallSdk.getInstance().getUserSession().getDeviceId()).setMeetingId(meetingId).setUserToken(userToken).build(), (var1, var2) -> {
             if (var1 != null) {
                 incomingCallsView.onJoinMeetingRequestAccepted(meetingId, var1.getRtcToken(), var1.getJoinTime());
             } else {

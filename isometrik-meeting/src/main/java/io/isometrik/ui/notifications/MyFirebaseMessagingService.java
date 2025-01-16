@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import io.isometrik.meeting.builder.meetings.FetchMeetingsQuery;
-import io.isometrik.ui.IsometrikUiSdk;
+import io.isometrik.ui.IsometrikCallSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.ui.meetings.list.MeetingsActivity;
 import com.bumptech.glide.Glide;
@@ -50,7 +50,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d("log1", "1" + data);
 
         if (data.get("action") != null) {
-            String userId = IsometrikUiSdk.getInstance().getUserSession().getUserId();
+            String userId = IsometrikCallSdk.getInstance().getUserSession().getUserId();
             if (userId != null) {
 
                 switch (data.get("action")) {
@@ -69,7 +69,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             long meetingCreationTime = Long.parseLong(data.get("creationTime"));
                             Intent intent = MeetingsNotifiedToUsers.getInstance().addMeetingNotified(this, meetingId, audioOnly, hdMeeting, initiatorName, initiatorImageUrl, meetingCreationTime, true);
                             if (intent != null) {
-                                IsometrikUiSdk.getInstance().getIsometrik().getRemoteUseCases().getMeetingUseCases().fetchMeetings(new FetchMeetingsQuery.Builder().setMeetingIds(Collections.singletonList(meetingId)).setUserToken(IsometrikUiSdk.getInstance().getUserSession().getUserToken()).build(), (var1, var2) -> {
+                                IsometrikCallSdk.getInstance().getIsometrik().getRemoteUseCases().getMeetingUseCases().fetchMeetings(new FetchMeetingsQuery.Builder().setMeetingIds(Collections.singletonList(meetingId)).setUserToken(IsometrikCallSdk.getInstance().getUserSession().getUserToken()).build(), (var1, var2) -> {
                                     if (var1 != null) {
                                         NotificationGenerator.generateIncomingCallNotification(customType, initiatorId, meetingId, initiatorName, initiatorImageUrl, meetingCreationTime, hdMeeting, audioOnly, intent, this);
 
