@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmUsersItemBinding;
 import io.isometrik.ui.meetings.create.UsersModel;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.PlaceholderUtils;
 
 /**
@@ -62,7 +62,7 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 if (PlaceholderUtils.isValidImageUrl(user.getUserProfileImageUrl())) {
 
                     try {
-                        GlideApp.with(mContext)
+                        Glide.with(mContext)
                                 .load(user.getUserProfileImageUrl())
                                 .placeholder(R.drawable.ism_ic_profile)
                                 .transform(new CircleCrop())

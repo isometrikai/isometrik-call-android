@@ -31,7 +31,7 @@ import io.isometrik.meeting.builder.meetings.FetchMeetingsQuery;
 import io.isometrik.ui.IsometrikUiSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.ui.meetings.list.MeetingsActivity;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.MeetingsNotifiedToUsers;
 import io.isometrik.ui.utils.NotificationUtil;
 import io.isometrik.ui.utils.PlaceholderUtils;
@@ -108,7 +108,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
                                         int density = (int) getResources().getDisplayMetrics().density;
 
-                                        FutureTarget<Bitmap> futureTarget = GlideApp.with(this).asBitmap().load(initiatorImageUrl).transform(new CircleCrop()).submit(density * PlaceholderUtils.BITMAP_WIDTH, density * PlaceholderUtils.BITMAP_HEIGHT);
+                                        FutureTarget<Bitmap> futureTarget = Glide.with(this).asBitmap().load(initiatorImageUrl).transform(new CircleCrop()).submit(density * PlaceholderUtils.BITMAP_WIDTH, density * PlaceholderUtils.BITMAP_HEIGHT);
                                         try {
                                             bitmap = futureTarget.get();
                                         } catch (Exception ignore) {

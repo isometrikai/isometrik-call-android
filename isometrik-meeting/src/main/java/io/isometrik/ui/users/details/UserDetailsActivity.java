@@ -22,7 +22,7 @@ import io.isometrik.meeting.databinding.IsmActivityUserDetailsBinding;
 import io.isometrik.ui.users.edit.EditUserActivity;
 import io.isometrik.ui.users.list.UsersActivity;
 import io.isometrik.ui.utils.AlertProgress;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.PlaceholderUtils;
 import io.isometrik.ui.utils.UserSession;
 
@@ -213,7 +213,7 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
                 if (PlaceholderUtils.isValidImageUrl(userProfilePicUrl)) {
 
                     try {
-                        GlideApp.with(this)
+                        Glide.with(this)
                                 .load(userProfilePicUrl)
                                 .placeholder(R.drawable.ism_ic_profile)
                                 .transform(new CircleCrop())
@@ -245,7 +245,7 @@ public class UserDetailsActivity extends AppCompatActivity implements UserDetail
             if (PlaceholderUtils.isValidImageUrl(userProfilePicUrl)) {
 
                 try {
-                    GlideApp.with(this)
+                    Glide.with(this)
                             .load(userProfilePicUrl)
                             .placeholder(R.drawable.ism_ic_profile)
                             .transform(new CircleCrop())

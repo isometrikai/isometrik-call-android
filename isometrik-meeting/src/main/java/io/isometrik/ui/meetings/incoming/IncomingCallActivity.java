@@ -33,7 +33,7 @@ import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityIncomingCallBinding;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
 import io.isometrik.ui.utils.Constants;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.NotificationUtil;
 import io.isometrik.ui.utils.PlaceholderUtils;
 import io.isometrik.ui.utils.RingtoneUtils;
@@ -87,7 +87,7 @@ public class IncomingCallActivity extends AppCompatActivity implements IncomingC
         if (PlaceholderUtils.isValidImageUrl(meetingImageUrl)) {
 
             try {
-                GlideApp.with(IncomingCallActivity.this).load(meetingImageUrl).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(ismActivityIncomingCallBinding.ivMeetingImage);
+                Glide.with(IncomingCallActivity.this).load(meetingImageUrl).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(ismActivityIncomingCallBinding.ivMeetingImage);
             } catch (IllegalArgumentException | NullPointerException ignore) {
             }
         } else {

@@ -1,7 +1,6 @@
 plugins {
   id 'com.android.library'
   id 'kotlin-android'
-  id 'kotlin-kapt'
   id 'maven-publish'
 }
 
@@ -75,8 +74,8 @@ dependencies {
   implementation 'com.google.android.material:material:1.12.0'
   implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-  implementation 'com.github.bumptech.glide:glide:4.12.0'
-  kapt 'com.github.bumptech.glide:compiler:4.12.0'
+  implementation 'com.github.bumptech.glide:glide:4.16.0'
+  annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 
   implementation 'androidx.multidex:multidex:2.0.1'
   implementation 'com.facebook.shimmer:shimmer:0.5.0'
@@ -92,7 +91,7 @@ dependencies {
 
 
   //For notifications
-  implementation platform('com.google.firebase:firebase-bom:31.0.0')
+  implementation platform('com.google.firebase:firebase-bom:33.2.0')
   implementation 'com.google.firebase:firebase-messaging'
 }
 

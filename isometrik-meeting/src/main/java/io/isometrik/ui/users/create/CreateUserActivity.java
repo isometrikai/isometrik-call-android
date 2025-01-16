@@ -36,7 +36,7 @@ import io.isometrik.ui.users.create.CreateUserContract;
 import io.isometrik.ui.users.list.UsersActivity;
 import io.isometrik.ui.utils.AlertProgress;
 import io.isometrik.ui.utils.Constants;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 
 /**
  * The activity to create a new user.
@@ -119,7 +119,7 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
               imageFile = new File(result.getData().getStringExtra("capturedImagePath"));
 
               try {
-                GlideApp.with(this)
+                Glide.with(this)
                     .load(imageFile.getAbsolutePath())
                     .transform(new CircleCrop())
                     .into(ismActivityCreateUserBinding.ivProfilePic);
@@ -142,7 +142,7 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
       imageFile = null;
 
       try {
-        GlideApp.with(CreateUserActivity.this)
+        Glide.with(CreateUserActivity.this)
             .load(R.drawable.ism_ic_profile)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(ismActivityCreateUserBinding.ivProfilePic);

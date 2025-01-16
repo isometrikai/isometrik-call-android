@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmUnselectedMemberItemBinding;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.PlaceholderUtils;
 
 /**
@@ -79,7 +79,7 @@ public class ParticipantsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 if (PlaceholderUtils.isValidImageUrl(participantsModel.getUserProfilePic())) {
 
                     try {
-                        GlideApp.with(mContext)
+                        Glide.with(mContext)
                                 .load(participantsModel.getUserProfilePic())
                                 .placeholder(R.drawable.ism_ic_profile)
                                 .transform(new CircleCrop())
