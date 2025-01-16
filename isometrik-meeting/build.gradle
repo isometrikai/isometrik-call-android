@@ -87,7 +87,7 @@ dependencies {
   implementation "androidx.camera:camera-view:1.0.0-alpha30"
   implementation "androidx.camera:camera-extensions:1.0.0-alpha30"
 
-  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.23"
 
 
   //For notifications
