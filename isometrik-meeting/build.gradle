@@ -123,7 +123,7 @@ afterEvaluate {
         from components.release
         groupId = 'io.isometrik.call'
         artifactId = 'android'
-        version = '1.0.8'
+        version = '1.0.9'
       }
     }
   }
