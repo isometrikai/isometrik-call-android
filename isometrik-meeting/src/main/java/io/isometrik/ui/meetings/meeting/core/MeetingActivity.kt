@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.Lifecycle
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import io.isometrik.meeting.rtcengine.ConnectionQuality
 import io.isometrik.meeting.rtcengine.MeetingOperations
@@ -30,7 +31,6 @@ import io.isometrik.meeting.R
 import io.isometrik.meeting.databinding.IsmActivityMeetingBinding
 import io.isometrik.ui.utils.CallingToneUtils
 import io.isometrik.ui.utils.Constants
-import io.isometrik.ui.utils.GlideApp
 import io.isometrik.ui.utils.NotificationUtil
 import io.isometrik.ui.utils.PlaceholderUtils
 import io.isometrik.ui.utils.TimeUtil
@@ -315,7 +315,7 @@ class MeetingActivity : AppCompatActivity(), MeetingSessionEventsHandler, Meetin
         try {
             if (PlaceholderUtils.isValidImageUrl(meetingImageUrl)) {
                 try {
-                    GlideApp.with(this).load(meetingImageUrl).placeholder(R.drawable.ism_ic_profile).transform(CircleCrop()).into(ismActivityMeetingBinding.ivMeetingImage)
+                    Glide.with(this).load(meetingImageUrl).placeholder(R.drawable.ism_ic_profile).transform(CircleCrop()).into(ismActivityMeetingBinding.ivMeetingImage)
                 } catch (ignore: IllegalArgumentException) {
                 } catch (ignore: NullPointerException) {
                 }

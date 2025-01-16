@@ -41,7 +41,7 @@ import io.isometrik.ui.meetings.list.MeetingsPresenter;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
 import io.isometrik.ui.users.details.UserDetailsActivity;
 import io.isometrik.ui.utils.AlertProgress;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.PlaceholderUtils;
 
 public class MeetingsActivity extends AppCompatActivity implements MeetingsContract.View {
@@ -236,7 +236,7 @@ public class MeetingsActivity extends AppCompatActivity implements MeetingsContr
             if (PlaceholderUtils.isValidImageUrl(userProfileImageUrl)) {
 
                 try {
-                    GlideApp.with(MeetingsActivity.this).load(userProfileImageUrl).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(ismActivityMeetingsBinding.ivUserImage);
+                    Glide.with(MeetingsActivity.this).load(userProfileImageUrl).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(ismActivityMeetingsBinding.ivUserImage);
                 } catch (IllegalArgumentException | NullPointerException ignore) {
                 }
             } else {

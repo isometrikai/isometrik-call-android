@@ -28,7 +28,7 @@ import io.isometrik.ui.IsometrikUiSdk;
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityAcceptCallFromNotificationBinding;
 import io.isometrik.ui.meetings.meeting.core.MeetingActivity;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.PlaceholderUtils;
 
 public class AcceptCallFromNotificationActivity extends AppCompatActivity {
@@ -75,7 +75,7 @@ public class AcceptCallFromNotificationActivity extends AppCompatActivity {
         if (PlaceholderUtils.isValidImageUrl(meetingImageUrl)) {
 
             try {
-                GlideApp.with(AcceptCallFromNotificationActivity.this).load(meetingImageUrl).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(ismActivityAcceptCallFromNotificationBinding.ivMeetingImage);
+                Glide.with(AcceptCallFromNotificationActivity.this).load(meetingImageUrl).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(ismActivityAcceptCallFromNotificationBinding.ivMeetingImage);
             } catch (IllegalArgumentException | NullPointerException ignore) {
             }
         } else {

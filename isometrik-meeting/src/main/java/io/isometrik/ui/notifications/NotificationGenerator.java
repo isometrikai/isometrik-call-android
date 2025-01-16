@@ -26,7 +26,7 @@ import io.isometrik.ui.meetings.create.onetoone.enums.CallType;
 import io.isometrik.ui.meetings.incoming.accept.AcceptCallFromNotificationActivity;
 import io.isometrik.ui.notifications.NotificationBroadcastReceiver;
 import io.isometrik.ui.utils.Constants;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.NotificationUtil;
 import io.isometrik.ui.utils.PlaceholderUtils;
 
@@ -99,7 +99,7 @@ public class NotificationGenerator {
 
                 int density = (int) context.getResources().getDisplayMetrics().density;
 
-                FutureTarget<Bitmap> futureTarget = GlideApp.with(context).asBitmap().load(initiatorImageUrl).transform(new CircleCrop()).submit(density * PlaceholderUtils.BITMAP_WIDTH, density * PlaceholderUtils.BITMAP_HEIGHT);
+                FutureTarget<Bitmap> futureTarget = Glide.with(context).asBitmap().load(initiatorImageUrl).transform(new CircleCrop()).submit(density * PlaceholderUtils.BITMAP_WIDTH, density * PlaceholderUtils.BITMAP_HEIGHT);
                 try {
                     bitmap = futureTarget.get();
                 } catch (Exception ignore) {

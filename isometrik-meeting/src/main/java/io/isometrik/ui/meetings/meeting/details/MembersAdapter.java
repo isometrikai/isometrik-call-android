@@ -17,7 +17,7 @@ import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmMeetingMemberItemBinding;
 import io.isometrik.ui.meetings.meeting.details.MeetingDetailsFragment;
 import io.isometrik.ui.meetings.meeting.details.MembersModel;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 import io.isometrik.ui.utils.PlaceholderUtils;
 
 /**
@@ -109,7 +109,7 @@ public class MembersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 if (PlaceholderUtils.isValidImageUrl(membersModel.getMemberProfileImageUrl())) {
 
                     try {
-                        GlideApp.with(mContext).load(membersModel.getMemberProfileImageUrl()).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(holder.ismMeetingMemberItemBinding.ivProfilePic);
+                        Glide.with(mContext).load(membersModel.getMemberProfileImageUrl()).placeholder(R.drawable.ism_ic_profile).transform(new CircleCrop()).into(holder.ismMeetingMemberItemBinding.ivProfilePic);
                     } catch (IllegalArgumentException | NullPointerException ignore) {
                     }
                 } else {

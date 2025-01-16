@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.isometrik.meeting.R;
 import io.isometrik.meeting.databinding.IsmActivityCaptureImageResultBinding;
-import io.isometrik.ui.utils.GlideApp;
+import com.bumptech.glide.Glide;
 
 /**
  * The activity to preview the captured image with option to discard image.
@@ -29,7 +29,7 @@ public class CapturedImagePreviewActivity extends AppCompatActivity {
     setContentView(view);
 
     try {
-      GlideApp.with(this)
+      Glide.with(this)
           .load(getIntent().getExtras().getString("capturedImagePath"))
           .placeholder(R.drawable.ism_ic_meeting_image)
           .into(ismActivityCaptureImageResultBinding.ivPreview);
