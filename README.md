@@ -6,6 +6,7 @@ A simple call library for Android applications.
 <p float="left">
   <img src="docs/1.png" width="200" />
   <img src="docs/2.png" width="200" />
+  <img src="docs/3.png" width="200" />
 </p>
 
 ## Adding it to your project
@@ -145,6 +146,15 @@ You are now ready fro audio/video call.
      }
 
 ```
+
+### Step 5: Show List of user
+
+```java
+Intent intent = new Intent(SplashActivity.this, UsersActivity.class);
+startActivity(intent);
+
+```
+
 
 # Technical details
 
