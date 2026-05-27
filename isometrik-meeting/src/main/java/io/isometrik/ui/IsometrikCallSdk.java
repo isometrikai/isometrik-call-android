@@ -101,7 +101,7 @@ public class IsometrikCallSdk {
         IMConfiguration imConfiguration =
                 new IMConfiguration(applicationContext, licenseKey, appSecret, userSecret,
                         connectionString);
-        imConfiguration.setLogVerbosity(IMLogVerbosity.NONE);
+        imConfiguration.setLogVerbosity(IMLogVerbosity.BODY);
         imConfiguration.setRealtimeEventsVerbosity(IMRealtimeEventsVerbosity.NONE);
         isometrik = new Isometrik(imConfiguration);
         userSession = new UserSession(applicationContext);

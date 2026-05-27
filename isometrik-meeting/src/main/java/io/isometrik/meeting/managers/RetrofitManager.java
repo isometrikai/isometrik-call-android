@@ -1,5 +1,7 @@
 package io.isometrik.meeting.managers;
 
+import android.util.Log;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
@@ -69,8 +71,12 @@ public class RetrofitManager {
         httpClient.connectTimeout(connectTimeOut, TimeUnit.SECONDS);
 
         if (isometrik.getConfiguration().getLogVerbosity() == IMLogVerbosity.BODY) {
-            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            HttpLoggingInterceptor logging =
+                    new HttpLoggingInterceptor(message -> Log.d("IsometrikOkHttp", message));
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            logging.redactHeader("licenseKey");
+            logging.redactHeader("appSecret");
+            logging.redactHeader("userSecret");
             httpClient.addInterceptor(logging);
         }
 
@@ -153,4 +159,3 @@ public class RetrofitManager {
         }
     }
 }
-
