@@ -82,14 +82,11 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
     });
     ismActivityCreateUserBinding.ivProfilePic.setOnClickListener(v -> {
 
-      if ((ContextCompat.checkSelfPermission(CreateUserActivity.this, Manifest.permission.CAMERA)
-          != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(
-          CreateUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-          != PackageManager.PERMISSION_GRANTED)) {
+      if (ContextCompat.checkSelfPermission(CreateUserActivity.this, Manifest.permission.CAMERA)
+          != PackageManager.PERMISSION_GRANTED) {
 
-        if ((ActivityCompat.shouldShowRequestPermissionRationale(CreateUserActivity.this,
-            Manifest.permission.CAMERA)) || (ActivityCompat.shouldShowRequestPermissionRationale(
-            CreateUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(CreateUserActivity.this,
+            Manifest.permission.CAMERA)) {
           Snackbar snackbar = Snackbar.make(ismActivityCreateUserBinding.rlParent,
               R.string.ism_permission_image_capture, Snackbar.LENGTH_INDEFINITE)
               .setAction(getString(R.string.ism_ok), view1 -> requestPermissions());
@@ -164,7 +161,7 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
   private void requestPermissions() {
 
     ActivityCompat.requestPermissions(CreateUserActivity.this,
-        new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+        new String[] { Manifest.permission.CAMERA }, 0);
   }
 
   @Override
@@ -277,16 +274,9 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
       @NonNull int[] grantResults) {
-    boolean permissionDenied = false;
     if (requestCode == 0) {
 
-      for (int grantResult : grantResults) {
-        if (grantResult != PackageManager.PERMISSION_GRANTED) {
-          permissionDenied = true;
-          break;
-        }
-      }
-      if (permissionDenied) {
+      if (grantResults.length == 0 || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
         Toast.makeText(this, getString(R.string.ism_permission_image_capture_denied),
             Toast.LENGTH_LONG).show();
       } else {
