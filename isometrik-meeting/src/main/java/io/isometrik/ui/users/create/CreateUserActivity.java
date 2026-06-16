@@ -36,6 +36,7 @@ import io.isometrik.ui.users.create.CreateUserContract;
 import io.isometrik.ui.users.list.UsersActivity;
 import io.isometrik.ui.utils.AlertProgress;
 import io.isometrik.ui.utils.Constants;
+import io.isometrik.ui.utils.GalleryImagePicker;
 import com.bumptech.glide.Glide;
 
 /**
@@ -55,6 +56,7 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
   private boolean cleanUpRequested = false;
   private IsmActivityCreateUserBinding ismActivityCreateUserBinding;
   private ActivityResultLauncher<Intent> cameraActivityLauncher;
+  private GalleryImagePicker galleryImagePicker;
   private AlertDialog uploadProgressDialog;
   private CircularProgressIndicator circularProgressIndicator;
 
@@ -80,31 +82,7 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
       //      Toast.LENGTH_SHORT).show();
       //}
     });
-    ismActivityCreateUserBinding.ivProfilePic.setOnClickListener(v -> {
-
-      if (ContextCompat.checkSelfPermission(CreateUserActivity.this, Manifest.permission.CAMERA)
-          != PackageManager.PERMISSION_GRANTED) {
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(CreateUserActivity.this,
-            Manifest.permission.CAMERA)) {
-          Snackbar snackbar = Snackbar.make(ismActivityCreateUserBinding.rlParent,
-              R.string.ism_permission_image_capture, Snackbar.LENGTH_INDEFINITE)
-              .setAction(getString(R.string.ism_ok), view1 -> requestPermissions());
-
-          snackbar.show();
-
-          ((TextView) snackbar.getView()
-              .findViewById(com.google.android.material.R.id.snackbar_text)).setGravity(
-              Gravity.CENTER_HORIZONTAL);
-        } else {
-
-          requestPermissions();
-        }
-      } else {
-
-        requestImageCapture();
-      }
-    });
+    ismActivityCreateUserBinding.ivProfilePic.setOnClickListener(v -> showImageSourceOptions());
     ismActivityCreateUserBinding.ibBack.setOnClickListener(v -> onBackPressed());
     ismActivityCreateUserBinding.tvSelectUser.setOnClickListener(v -> onBackPressed());
 
@@ -134,6 +112,19 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
                 .show();
           }
         });
+    galleryImagePicker = new GalleryImagePicker(this, pickedImageFile -> {
+      imageFile = pickedImageFile;
+
+      try {
+        Glide.with(this)
+            .load(imageFile.getAbsolutePath())
+            .transform(new CircleCrop())
+            .into(ismActivityCreateUserBinding.ivProfilePic);
+      } catch (IllegalArgumentException | NullPointerException ignore) {
+
+      }
+      ismActivityCreateUserBinding.ivRemoveUserImage.setVisibility(View.VISIBLE);
+    });
 
     ismActivityCreateUserBinding.ivRemoveUserImage.setOnClickListener(v -> {
       imageFile = null;
@@ -162,6 +153,47 @@ public class CreateUserActivity extends AppCompatActivity implements CreateUserC
 
     ActivityCompat.requestPermissions(CreateUserActivity.this,
         new String[] { Manifest.permission.CAMERA }, 0);
+  }
+
+  private void showImageSourceOptions() {
+    new AlertDialog.Builder(this)
+        .setTitle(getString(R.string.ism_image_selection_title))
+        .setItems(new String[] {
+            getString(R.string.ism_image_selection_camera),
+            getString(R.string.ism_image_selection_gallery)
+        }, (dialog, which) -> {
+          if (which == 0) {
+            requestCameraCapture();
+          } else {
+            galleryImagePicker.pickImage();
+          }
+        })
+        .show();
+  }
+
+  private void requestCameraCapture() {
+    if (ContextCompat.checkSelfPermission(CreateUserActivity.this, Manifest.permission.CAMERA)
+        != PackageManager.PERMISSION_GRANTED) {
+
+      if (ActivityCompat.shouldShowRequestPermissionRationale(CreateUserActivity.this,
+          Manifest.permission.CAMERA)) {
+        Snackbar snackbar = Snackbar.make(ismActivityCreateUserBinding.rlParent,
+            R.string.ism_permission_image_capture, Snackbar.LENGTH_INDEFINITE)
+            .setAction(getString(R.string.ism_ok), view1 -> requestPermissions());
+
+        snackbar.show();
+
+        ((TextView) snackbar.getView()
+            .findViewById(com.google.android.material.R.id.snackbar_text)).setGravity(
+            Gravity.CENTER_HORIZONTAL);
+      } else {
+
+        requestPermissions();
+      }
+    } else {
+
+      requestImageCapture();
+    }
   }
 
   @Override
