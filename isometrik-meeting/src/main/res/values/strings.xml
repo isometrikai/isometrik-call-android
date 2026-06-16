@@ -31,6 +31,11 @@
     <string name="ism_permission_image_capture_denied">Permission to capture image denied!!</string>
     <string name="ism_image_capture_canceled">Image capture canceled!!</string>
     <string name="ism_image_capture_failure">Failed to capture image!!</string>
+    <string name="ism_image_selection_title">Select profile image</string>
+    <string name="ism_image_selection_camera">Take photo</string>
+    <string name="ism_image_selection_gallery">Choose from gallery</string>
+    <string name="ism_image_selection_canceled">Image selection canceled!!</string>
+    <string name="ism_image_selection_failure">Failed to select image!!</string>
     <string name="ism_ok">OK</string>
     <string name="ism_invalid_username">Add user name to continue!!</string>
     <string name="ism_invalid_user_identifier">Add user identifier to continue!!</string>

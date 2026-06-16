@@ -36,6 +36,7 @@ import io.isometrik.ui.camera.CameraActivity;
 import io.isometrik.meeting.databinding.IsmActivityEditUserBinding;
 import io.isometrik.ui.utils.AlertProgress;
 import com.bumptech.glide.Glide;
+import io.isometrik.ui.utils.GalleryImagePicker;
 import io.isometrik.ui.utils.PlaceholderUtils;
 import io.isometrik.ui.utils.UserSession;
 
@@ -63,6 +64,7 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
 
   private IsmActivityEditUserBinding ismActivityEditUserBinding;
   private ActivityResultLauncher<Intent> cameraActivityLauncher;
+  private GalleryImagePicker galleryImagePicker;
   private AlertDialog uploadProgressDialog;
   private CircularProgressIndicator circularProgressIndicator;
 
@@ -87,30 +89,7 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
           profilePicUpdated);
     });
     ismActivityEditUserBinding.ibBack.setOnClickListener(v -> onBackPressed());
-    ismActivityEditUserBinding.ibAddImage.setOnClickListener(v -> {
-      if (ContextCompat.checkSelfPermission(EditUserActivity.this, Manifest.permission.CAMERA)
-          != PackageManager.PERMISSION_GRANTED) {
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(EditUserActivity.this,
-            Manifest.permission.CAMERA)) {
-          Snackbar snackbar = Snackbar.make(ismActivityEditUserBinding.rlParent,
-              R.string.ism_permission_image_capture, Snackbar.LENGTH_INDEFINITE)
-              .setAction(getString(R.string.ism_ok), view1 -> requestPermissions());
-
-          snackbar.show();
-
-          ((TextView) snackbar.getView()
-              .findViewById(com.google.android.material.R.id.snackbar_text)).setGravity(
-              Gravity.CENTER_HORIZONTAL);
-        } else {
-
-          requestPermissions();
-        }
-      } else {
-
-        requestImageCapture();
-      }
-    });
+    ismActivityEditUserBinding.ibAddImage.setOnClickListener(v -> showImageSourceOptions());
 
     cameraActivityLauncher =
         registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -139,6 +118,19 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
                 .show();
           }
         });
+    galleryImagePicker = new GalleryImagePicker(this, pickedImageFile -> {
+      imageFile = pickedImageFile;
+
+      try {
+        Glide.with(this)
+            .load(imageFile.getAbsolutePath())
+            .transform(new CircleCrop())
+            .into(ismActivityEditUserBinding.ivProfilePic);
+      } catch (IllegalArgumentException | NullPointerException ignore) {
+
+      }
+      profilePicUpdated = true;
+    });
   }
 
 
@@ -190,6 +182,47 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
 
     ActivityCompat.requestPermissions(EditUserActivity.this,
         new String[] { Manifest.permission.CAMERA }, 0);
+  }
+
+  private void showImageSourceOptions() {
+    new AlertDialog.Builder(this)
+        .setTitle(getString(R.string.ism_image_selection_title))
+        .setItems(new String[] {
+            getString(R.string.ism_image_selection_camera),
+            getString(R.string.ism_image_selection_gallery)
+        }, (dialog, which) -> {
+          if (which == 0) {
+            requestCameraCapture();
+          } else {
+            galleryImagePicker.pickImage();
+          }
+        })
+        .show();
+  }
+
+  private void requestCameraCapture() {
+    if (ContextCompat.checkSelfPermission(EditUserActivity.this, Manifest.permission.CAMERA)
+        != PackageManager.PERMISSION_GRANTED) {
+
+      if (ActivityCompat.shouldShowRequestPermissionRationale(EditUserActivity.this,
+          Manifest.permission.CAMERA)) {
+        Snackbar snackbar = Snackbar.make(ismActivityEditUserBinding.rlParent,
+            R.string.ism_permission_image_capture, Snackbar.LENGTH_INDEFINITE)
+            .setAction(getString(R.string.ism_ok), view1 -> requestPermissions());
+
+        snackbar.show();
+
+        ((TextView) snackbar.getView()
+            .findViewById(com.google.android.material.R.id.snackbar_text)).setGravity(
+            Gravity.CENTER_HORIZONTAL);
+      } else {
+
+        requestPermissions();
+      }
+    } else {
+
+      requestImageCapture();
+    }
   }
 
   /**
