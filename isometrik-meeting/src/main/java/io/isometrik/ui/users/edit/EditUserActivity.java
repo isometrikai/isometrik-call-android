@@ -88,14 +88,11 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
     });
     ismActivityEditUserBinding.ibBack.setOnClickListener(v -> onBackPressed());
     ismActivityEditUserBinding.ibAddImage.setOnClickListener(v -> {
-      if ((ContextCompat.checkSelfPermission(EditUserActivity.this, Manifest.permission.CAMERA)
-          != PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(
-          EditUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-          != PackageManager.PERMISSION_GRANTED)) {
+      if (ContextCompat.checkSelfPermission(EditUserActivity.this, Manifest.permission.CAMERA)
+          != PackageManager.PERMISSION_GRANTED) {
 
-        if ((ActivityCompat.shouldShowRequestPermissionRationale(EditUserActivity.this,
-            Manifest.permission.CAMERA)) || (ActivityCompat.shouldShowRequestPermissionRationale(
-            EditUserActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE))) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(EditUserActivity.this,
+            Manifest.permission.CAMERA)) {
           Snackbar snackbar = Snackbar.make(ismActivityEditUserBinding.rlParent,
               R.string.ism_permission_image_capture, Snackbar.LENGTH_INDEFINITE)
               .setAction(getString(R.string.ism_ok), view1 -> requestPermissions());
@@ -192,7 +189,7 @@ public class EditUserActivity extends AppCompatActivity implements EditUserContr
   private void requestPermissions() {
 
     ActivityCompat.requestPermissions(EditUserActivity.this,
-        new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
+        new String[] { Manifest.permission.CAMERA }, 0);
   }
 
   /**
